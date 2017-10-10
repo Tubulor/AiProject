@@ -1,44 +1,132 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="~/Content/IstoreCSS.css" type="text/css" media="screen" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - Istore</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@*<div id="player">
+			<audio autoplay hidden>
+				<source src="~/Content/audio/littleidea.mp3">
+			</audio>
+		</div> *@
+	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	
+	@*<script type="text/javascript" src="~/Content/javascript/"></script>*@
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="home">@Html.ActionLink("Home page", "Index", "Home")</li>
+					<li class="manage">@Html.ActionLink("Manage", "Index", "Manage")</li>
+					<li class="buys"> @Html.ActionLink("Buy", "Index", "Buys")</li>
+					<li class="products">@Html.ActionLink("Products", "Index", "Products")</li>
+					<li>
+						<a href="#">
+							<div id="transDemo2">
+								<div class="hover">
+									<img src=http://www.ashlylorenzana.com/wp-content/uploads/2013/12/12065637851779660844SRD_RSS_Logo.svg_.hi_.png width="22" height="22">
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="subscribe"><a href="#">Subscribe via. RSS</a></li>
+				</ul>
+				@Html.Partial("_LoginPartial")
+			</div>
+		</div>
+	</div>
+
+
+	<section id="intro">
+		<!-- Introduction -->
+		<img src="~/Content/images/electronicbanner.jpg" />
+	</section>
+
+	<link rel="stylesheet" href="~/Content/IstoreCSS.css" type="text/css" media="screen" />
+
+	<article id="mainContent">
+		<section>
+			@RenderBody()
+		</section>
+	</article>
+	<div id="content">
+		<aside>
+			<section>
+
+				<header>
+					<h3>Categories</h3>
+				</header>
+				<ul>
+					<li><a href="#">Lorem ipsum dolor</a></li>
+					<li><a href="#">Sit amet consectetur</a></li>
+					<li><a href="#">Adipisicing elit sed</a></li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<h3>Archives</h3>
+				</header>
+				<ul>
+					<li><a href="#">December 2008</a></li>
+					<li><a href="#">January 2009</a></li>
+					<li><a href="#">February 2009</a></li>
+					<li><a href="#">March 2009</a></li>
+				</ul>
+			</section>
+		</aside>
+		</div>
+
+		<footer>
+			<div id="content">
+				<!-- Footer -->
+
+				<section id="about">
+
+					<h3>About</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut la</p>
+				</section>
+				<section id="blogroll">
+					<h3>shopping</h3>
+					<ul>
+						<li><a href="#">NETTUTS+</a></li>
+						<li><a href="#">FreelanceSwitch</a></li>
+					</ul>
+				</section>
+				<section id="popular">
+
+					<h3>Popular</h3>
+
+					<ul>
+						<li><a href="#">popular pages</a></li>
+						<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+						<li><a href="#">Consectetur adipisicing elit, sed do eiusmod</a></li>
+					</ul>
+				</section>
+</div>
+</footer>
+	
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+		@RenderSection("scripts", required: false)
+
+
 </body>
 </html>
