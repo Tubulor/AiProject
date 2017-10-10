@@ -1,0 +1,50 @@
+﻿@model FinalProject.Models.Buys
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Buys</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Products.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Products.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MembersID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MembersID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceBought)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceBought)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateBought)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateBought)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,85 @@
+﻿using System.Data.Entity;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FinalProject.Models
+{
+    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    public class ApplicationUser : IdentityUser
+    {
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAutheC:\Users\Or\Documents\Visual Studio 2017\Projects\FinalProject\FinalProject\Models\ManageViewModels.csnticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
+    }
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext()
+            : base("DefaultConnection", throwIfV1Schema: false)
+        {
+        }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
+
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Buys> Buys { get; set; }
+    }
+
+    public class Products
+    {
+        [Key]
+        public int ID { get; set; }
+        [Required]
+        public string ProductName { get; set; }
+        [Required]
+        public double Price { get; set; }
+        [Required]
+        public string Description { get; set; }
+        [Required]
+        public string Brand { get; set; }
+
+        public string Inches { get; set; }
+
+        public string Resolution { get; set; }
+
+        public string RefreshRate { get; set; }
+
+        public string Image { get; set; }
+        public string Video { get; set; }
+        public int Discount { get; set; }
+
+    }
+
+    public class Buys
+    {
+
+        private DateTime? currentTime;
+        public int ID { get; set; }
+        public int ProductsID { get; set; }
+        public string MembersID { get; set; }
+        public double PriceBought { get; set; }
+        public DateTime DateBought
+        {
+            get { return currentTime ?? DateTime.Now; }
+            set { currentTime = value; }
+        }
+        public virtual ICollection<Products> Product { get; set; }
+        
+        public virtual Products Products { get; set; }
+
+        public virtual ApplicationUser ApplicationUsers { get; set; }
+    }
+}
