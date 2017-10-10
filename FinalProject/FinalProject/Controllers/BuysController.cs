@@ -10,6 +10,7 @@ using FinalProject.Models;
 
 namespace FinalProject.Controllers
 {
+    [Authorize]
     public class BuysController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

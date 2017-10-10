@@ -3,7 +3,15 @@
 @{
     ViewBag.Title = "Details";
 }
+@if (!User.Identity.Name.Equals("admin@gmail.com"))
+{
+    <h2>UnAuthorize Access.</h2>
+}
 
+
+
+else
+{
 <h2>Details</h2>
 
 <div>
@@ -48,3 +56,4 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+}
