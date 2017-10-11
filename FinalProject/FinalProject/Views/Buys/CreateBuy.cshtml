@@ -1,0 +1,64 @@
+﻿@model FinalProject.Models.ViewModle
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Are you sure ?</h2>
+
+
+
+@using (Html.BeginForm("CreateBuy", "Buys", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+        <dl class="dl-horizontal">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Buys.ProductsID, "PostID", htmlAttributes: new { @class = "hidden" })
+                @Html.HiddenFor(model => model.Buys.ProductsID, new { Value = @Model.Products.ID })
+                <div class="col-md-10">
+
+                    @Html.ValidationMessageFor(model => model.Buys.MembersID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Buys.MembersID, "PostID", htmlAttributes: new { @class = "hidden" })
+                @Html.HiddenFor(model => model.Buys.MembersID, new { Value = @User.Identity.GetUserName() })
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(model => model.Buys.MembersID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Buys.PriceBought, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => Model.Products.Price)
+                    @Html.HiddenFor(model => model.Buys.PriceBought, new { Value = @Model.Products.Price })
+                    @Html.ValidationMessageFor(model => model.Buys.PriceBought, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </dl>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Buy" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

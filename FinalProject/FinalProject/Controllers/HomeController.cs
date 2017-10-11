@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,15 @@ namespace FinalProject.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+		private ApplicationDbContext db = new ApplicationDbContext();
+		public ActionResult Index()
         {
-            return View();
-        }
+			var viewmodel = new ViewModle();
+			viewmodel.Product = db.Products.ToList();
+
+			return View(viewmodel);
+		}
+		
 
         public ActionResult About()
         {
