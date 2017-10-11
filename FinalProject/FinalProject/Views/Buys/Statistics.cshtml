@@ -1,0 +1,27 @@
+﻿@model IEnumerable<FinalProject.Models.Buys>
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>Statistics</h2>
+
+@if (!User.Identity.Name.Equals("admin@gmail.com"))
+{
+	<h2>UnAuthorize Access.</h2>
+}
+else
+{
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8">
+<svg id="barChart"></svg>
+<script>
+var data = [ 50,90,30,10,70,20];
+var w = 500;
+var h = 100;
+var svg = d3.select("#barChart")
+            .attr("width", w)
+            .attr("height", h);
+	</script>
+
+
+
+}

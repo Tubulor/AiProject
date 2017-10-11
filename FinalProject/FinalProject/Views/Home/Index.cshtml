@@ -44,95 +44,31 @@
 				<img src="@Html.DisplayFor(modelItem => item.Image)" width="200" height="150">
 			</div>
 			<div class="product-info">
-				<h5>@Html.DisplayFor(model => item.ProductName)</h5>
-				<h3>@Html.DisplayFor(model => item.Price)</h3>
-				<h1> @Html.DisplayFor(model => item.Description)</h1>
-				@Html.DisplayFor(model => item.Brand),
-				@Html.DisplayFor(model => item.Inches),
-				@Html.DisplayFor(model => item.Resolution),
-				@Html.DisplayFor(model => item.RefreshRate),
-				@Html.DisplayFor(model => item.Discount)
-
+				<h2>@Html.DisplayFor(model => item.ProductName)</h2>
+				<h3>
+					Description - @Html.DisplayFor(model => item.Description)<br>
+					Brand - @Html.DisplayFor(model => item.Brand)<br>
+					Inches - @Html.DisplayFor(model => item.Inches)<br>
+					Resolution - @Html.DisplayFor(model => item.Resolution)<br>
+					RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
+					Discount- @Html.DisplayFor(model => item.Discount)<br>
+					<p class="price">Price - @Html.DisplayFor(model => item.Price)</p>	
+				</h3>
 			</div>
+			<p>
+				<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
+			</p>
 		</div>
+		<hr>
 	}
 	<!-- more products -->
 
-@*
 
-	<h4>@Html.DisplayFor(model => item.ProductName)</h4>
+		
+		
 
-		<dt>
-			@Html.DisplayNameFor(model => item.Price)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => item.Price)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => item.Description)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => item.Description)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => item.Brand)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => item.Brand)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => item.Inches)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => item.Inches)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => item.Resolution)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => item.Resolution)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => item.RefreshRate)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => item.RefreshRate)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => item.Discount)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => item.Discount)
-		</dd>
-		<p>
-			<img src="@Html.DisplayFor(modelItem =>item.Image)" height="240" width="320">
-		</p>
-
-		<video width="320" height="240" controls>
-			<source src="@Html.DisplayFor(modelItem =>item.Video)" type="video/mp4">
-		</video>
-
-		<p>
-			<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
-
-		</p>
-		<hr>
-
-*@
-	}
+	
+	
 </section>
 
 
