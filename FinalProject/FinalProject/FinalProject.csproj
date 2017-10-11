@@ -326,6 +326,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Buys\CreateBuy.cshtml" />
     <Content Include="Views\Buys\Statistics.cshtml" />
+    <Content Include="Views\Buys\ProductBuys.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
