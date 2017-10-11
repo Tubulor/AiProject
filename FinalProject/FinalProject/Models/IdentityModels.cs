@@ -79,7 +79,7 @@ namespace FinalProject.Models
         public virtual ICollection<Products> Product { get; set; }
         
         public virtual Products Products { get; set; }
-
-        public virtual ApplicationUser ApplicationUsers { get; set; }
+		[ForeignKey("MembersID")]
+		public virtual ApplicationUser ApplicationUsers { get; set; }
     }
 }

@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201710101459454_last.Designer.cs">
       <DependentUpon>201710101459454_last.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710111357112_newupdateforbuys.cs" />
+    <Compile Include="Migrations\201710111357112_newupdateforbuys.Designer.cs">
+      <DependentUpon>201710111357112_newupdateforbuys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -334,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710101459454_last.resx">
       <DependentUpon>201710101459454_last.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111357112_newupdateforbuys.resx">
+      <DependentUpon>201710111357112_newupdateforbuys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

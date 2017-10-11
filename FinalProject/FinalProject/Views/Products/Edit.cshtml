@@ -3,7 +3,10 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+@if (!User.Identity.Name.Equals("admin@gmail.com"))
+{
+	<h2>UnAuthorize Access.</h2>
+}
 <h2>Edit</h2>
 
 

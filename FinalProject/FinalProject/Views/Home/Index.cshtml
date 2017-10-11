@@ -32,81 +32,109 @@
 
 		</form>
 
-		@foreach (var item in Model.Product)
-		{
-			<h4>@Html.DisplayFor(model => item.ProductName)</h4>
+<section class="products">
 
-			<dt>
-				@Html.DisplayNameFor(model => item.Price)
-			</dt>
+	
+	@foreach (var item in Model.Product)
+	{
+		<!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
 
-			<dd>
-				@Html.DisplayFor(model => item.Price)
-			</dd>
-
-			<dt>
-				@Html.DisplayNameFor(model => item.Description)
-			</dt>
-
-			<dd>
-				@Html.DisplayFor(model => item.Description)
-			</dd>
-
-			<dt>
-				@Html.DisplayNameFor(model => item.Brand)
-			</dt>
-
-			<dd>
-				@Html.DisplayFor(model => item.Brand)
-			</dd>
-
-			<dt>
-				@Html.DisplayNameFor(model => item.Inches)
-			</dt>
-
-			<dd>
-				@Html.DisplayFor(model => item.Inches)
-			</dd>
-
-			<dt>
-				@Html.DisplayNameFor(model => item.Resolution)
-			</dt>
-
-			<dd>
-				@Html.DisplayFor(model => item.Resolution)
-			</dd>
-
-			<dt>
-				@Html.DisplayNameFor(model => item.RefreshRate)
-			</dt>
-
-			<dd>
-				@Html.DisplayFor(model => item.RefreshRate)
-			</dd>
-
-			<dt>
-				@Html.DisplayNameFor(model => item.Discount)
-			</dt>
-
-			<dd>
+		<div class="product-card">
+			<div class="product-image">
+				<img src="@Html.DisplayFor(modelItem => item.Image)" width="200" height="150">
+			</div>
+			<div class="product-info">
+				<h5>@Html.DisplayFor(model => item.ProductName)</h5>
+				<h3>@Html.DisplayFor(model => item.Price)</h3>
+				<h1> @Html.DisplayFor(model => item.Description)</h1>
+				@Html.DisplayFor(model => item.Brand),
+				@Html.DisplayFor(model => item.Inches),
+				@Html.DisplayFor(model => item.Resolution),
+				@Html.DisplayFor(model => item.RefreshRate),
 				@Html.DisplayFor(model => item.Discount)
-			</dd>
-			<p>
-				<img src="@Html.DisplayFor(modelItem =>item.Image)" height="240" width="320">
-			</p>
 
-			<video width="320" height="240" controls>
-				<source src="@Html.DisplayFor(modelItem =>item.Video)" type="video/mp4">
-			</video>
+			</div>
+		</div>
+	}
+	<!-- more products -->
 
-			<p>
-				<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'" >BUY!</button>
+@*
 
-			</p>
-			<hr>
+	<h4>@Html.DisplayFor(model => item.ProductName)</h4>
 
+		<dt>
+			@Html.DisplayNameFor(model => item.Price)
+		</dt>
 
-				}
+		<dd>
+			@Html.DisplayFor(model => item.Price)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => item.Description)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => item.Description)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => item.Brand)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => item.Brand)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => item.Inches)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => item.Inches)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => item.Resolution)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => item.Resolution)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => item.RefreshRate)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => item.RefreshRate)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => item.Discount)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => item.Discount)
+		</dd>
+		<p>
+			<img src="@Html.DisplayFor(modelItem =>item.Image)" height="240" width="320">
+		</p>
+
+		<video width="320" height="240" controls>
+			<source src="@Html.DisplayFor(modelItem =>item.Video)" type="video/mp4">
+		</video>
+
+		<p>
+			<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
+
+		</p>
+		<hr>
+
+*@
+	}
+</section>
+
 
 
 

@@ -10,7 +10,8 @@ using FinalProject.Models;
 
 namespace FinalProject.Controllers
 {
-    public class BuysController : Controller
+	[Authorize]
+	public class BuysController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -35,9 +36,15 @@ namespace FinalProject.Controllers
             }
             return View(buys);
         }
+		public ActionResult Create()
+		{
+			ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName");
+			ViewBag.MembersID = new SelectList(db.Users, "ID", "MemberID");
+			return View();
+		}
 
-        // GET: Buys/Create
-        public ActionResult CreateBuy(int? id)
+		// GET: Buys/CreateBuy/id
+		public ActionResult CreateBuy(int? id)
         {
 			var viewmodel = new ViewModle();
 		
