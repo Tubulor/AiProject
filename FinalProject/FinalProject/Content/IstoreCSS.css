@@ -1,0 +1,448 @@
+﻿/*------------------------------
+=BASIC SETUP
+------------------------------*/
+#transDemo2 div {
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	-webkit-transition: all 2s ease-in-out;
+	-moz-transition: all 2s ease-in-out;
+	-ms-transition: all 2s ease-in-out;
+	transition: all 2s ease-in-out;
+}
+
+	#transDemo2 div:hover, #transDemo2 div.hover_effect {
+		-webkit-transform: rotate(720deg) scale(2,2);
+		-moz-transform: rotate(720deg) scale(2,2);
+		-ms-transform: rotate(720deg) scale(2,2);
+		transform: rotate(720deg) scale(2,2);
+	}
+
+hr {
+	display: block;
+	position: relative;
+	padding: 0;
+	margin: 8px auto;
+	height: 0;
+	width: 100%;
+	max-height: 0;
+	font-size: 1px;
+	line-height: 0;
+	clear: both;
+	border: none;
+	border-top: 1px solid #aaaaaa;
+	border-bottom: 1px solid #ffffff;
+}
+.button {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.button1 {
+	background-color: white;
+	color: black;
+	border: 2px solid #4CAF50;
+}
+
+	.button1:hover {
+		background-color: #4CAF50;
+		color: white;
+	}
+
+/* Makeshift CSS Reset */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.products {
+	display: flex;
+	flex-wrap: wrap;
+}
+.product-card {
+	padding: 2%;
+	flex-grow: 1;
+	flex-basis: 16%;
+	display: flex; /* so child elements can use flexbox stuff too! */
+}
+.product-card {
+	flex: 1 16%;
+}
+.product-image img {
+	/*max-width: 100%;*/
+	width: 200px;
+	height: 150px;
+}
+.product-info {
+	margin-top: auto;
+}
+
+
+/* Tell the browser to render HTML 5 elements as block */
+header, footer, section, aside, nav, article {
+	display: block;
+}
+
+@font-face {
+	font-family: myFirstFont;
+	src: url(https://www.tutorialspoint.com/css/font/SansationLight.woff);
+}
+
+
+body {
+	margin: 0 auto;
+	padding: 22px 0;
+	width: 940px;
+	font: 13px/22px myFirstFont;
+	background: #F0F0F0;
+}
+
+h1, h2 {
+	font-size: 28px;
+	line-height: 44px;
+	padding: 22px 0;
+}
+
+
+
+h3 {
+	font-size: 18px;
+	line-height: 22px;
+	padding: 11px 0;
+}
+h2 {
+	text-shadow: 3px 3px #DDDDDD;
+}
+
+p {
+	padding-bottom: 22px;
+}
+
+
+
+/*------------------------------
+=NAVIGATION
+------------------------------*/
+
+nav {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	background: black; /* For browsers that do not support gradients */
+	}
+
+	nav ul {
+		margin: 0 auto;
+		width: 960px;
+		list-style: none;
+	}
+
+		nav ul li {
+			float: left;
+		}
+
+			nav ul li a {
+				display: block;
+				margin-right: 20px;
+				width: 140px;
+				font-size: 14px;
+				line-height: 44px;
+				text-align: center;
+				text-decoration: none;
+				color: #777;
+			}
+
+				nav ul li a:hover {
+					color: #fff;
+				}
+
+			nav ul li.home a {
+				text-align: left;
+			}
+
+
+			nav ul li.subscribe a {
+				margin-left: -110px;
+				text-align: left;
+			}
+
+			nav ul li.subscribe a {
+				margin-right: -60px;
+			}
+
+/*------------------------------
+=INTRODUCTION
+------------------------------*/
+
+#intro {
+	position: relative;
+	margin-top: 44px;
+	-moz-border-radius: 44px;
+	-webkit-border-radius: 44px;
+}
+
+	#intro h2, #intro p {
+		position: relative;
+		z-index: 9999;
+		width: 436px;
+	}
+
+	#intro h2 {
+		padding: 0 0 22px 0;
+		font-weight: normal;
+		color: #fff;
+	}
+
+	#intro p {
+		padding: 0;
+		color: #d9f499;
+	}
+
+	#intro img {
+		
+		max-width: 100%;
+		height: auto;
+		width: auto\9; /* ie8 */
+		-moz-border-radius: 44px;
+		-webkit-border-radius: 44px;
+	}
+
+
+/*------------------------------
+=CONTENT AREA AND SIDEBAR LAYOUT
+------------------------------*/
+
+#content {
+	display: table;
+}
+
+#mainContent {
+	float: right;
+	display: table-cell;
+	width: 76.5%;
+	padding-left: 22px;
+}
+
+aside {
+	float: right;
+	display: table-cell;
+	
+	background: url("~/Content/images/sidebar_background.png") top left;
+}
+
+
+	/*------------------------------
+=SIDEBAR
+------------------------------*/
+	aside section {
+		margin: 22px 0 0 22px;
+		padding: 11px 22px;
+		background: #00cc00 0%; /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(to bottom, gray 0%, white ); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(to bottom, gray 0%, white); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(to bottom, gray 0%,white ); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom, gray 0%, white ); /* Standard syntax (must be last) */
+		/* Border-radius not implemented yet */
+		-moz-border-radius: 11px;
+		-webkit-border-radius: 11px;
+	}
+
+		aside section ul {
+			margin: 0 0 0 22px;
+			list-style: none;
+		}
+
+			aside section ul li a {
+				display: block;
+				text-decoration: none;
+				color: #000;
+			}
+
+				aside section ul li a:hover {
+					text-decoration: underline;
+				}
+
+/*------------------------------
+=BLOG POST
+------------------------------*/
+.blogPost header p, .blogPost header p a {
+	font-size: 14px;
+	font-style: italic;
+	color: #777;
+}
+
+	.blogPost header p a:hover {
+		text-decoration: none;
+		color: #000;
+	}
+
+.blogPost div {
+	/* Column-count not implemented yet */
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
+	/* Column-gap not implemented yet */
+	-moz-column-gap: 22px;
+	-webkit-column-gap: 22px;
+}
+
+.blogPost img {
+	margin: 22px 0;
+	-webkit-box-shadow: 3px 3px 7px #777;
+}
+
+.blogPost video {
+	margin: 12px 0;
+	width: 100%;
+	height: auto;
+	-webkit-box-shadow: 3px 3px 7px #777;
+}
+
+/*------------------------------
+=COMMENTS
+------------------------------*/
+
+#comments {
+	margin-top: 21px;
+	padding-top: 22px;
+	border-top: 1px solid #d7d7d7;
+}
+
+	#comments article {
+		display: table;
+		padding: 22px;
+	}
+
+		#comments article:nth-child(odd) {
+			padding: 21px;
+			background: #E3E3E3;
+			border: 1px solid #d7d7d7;
+			-moz-border-radius: 11px;
+			-webkit-border-radius: 11px;
+		}
+
+		#comments article header {
+			display: table-cell;
+			width: 220px;
+			padding-right: 22px;
+		}
+
+			#comments article header a {
+				display: block;
+				font-weight: bold;
+				color: #000;
+			}
+
+				#comments article header a:hover {
+					text-decoration: none;
+				}
+
+		#comments article p {
+			padding: 0;
+		}
+
+
+
+
+
+/*------------------------------
+=COMMENT FORM
+------------------------------*/
+form {
+	/*margin-top: 21px;
+	padding-top: 22px;
+	border-top: 1px solid #d7d7d7;*/
+}
+
+	form p {
+		display: table;
+		margin-bottom: 22px;
+		padding: 0 22px;
+	}
+
+	form label {
+		display: table-cell;
+		width: 140px;
+		padding-right: 20px;
+		text-align: right;
+		font-weight: bold;
+		vertical-align: top;
+	}
+
+	form input[type="text"], form input[type="email"], form input[type="url"] {
+		display: table-cell;
+		width: 300px;
+		height: 20px;
+		border: 1px solid #d7d7d7;
+	}
+
+	form textarea {
+		width: 300px;
+		height: 100px;
+		border: 1px solid #d7d7d7;
+	}
+
+	form input[type="submit"] {
+		margin-left: 162px;
+	}
+
+
+
+/*------------------------------
+=FOOTER
+------------------------------*/
+footer {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	background: #222;
+}
+
+	footer div {
+		display: table;
+		margin: 0 auto;
+		padding: 30px 0;
+		width: 940px;
+		color: #777;
+	}
+
+		footer div section {
+			display: table-cell;
+			width: 300px;
+		}
+
+		footer div #about, footer div #blogroll {
+		
+		}
+
+	footer h3 {
+		color: #FFF;
+	}
+
+	footer a {
+		color: #999;
+	}
+
+		footer a:hover {
+			color: #FFF;
+			text-decoration: none;
+		}
+
+	footer ul {
+		margin: 0 0 0 40px;
+		list-style: square;
+		color: #565656;
+	}
+
+		footer ul li a {
+			display: block;
+		}

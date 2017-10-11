@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Create";
 }
+@if (!User.Identity.Name.Equals("admin@gmail.com"))
+{
+	<h2>UnAuthorize Access.</h2>
+}
 
 <h2>Create</h2>
 @if (!User.Identity.Name.Equals("admin@gmail.com"))

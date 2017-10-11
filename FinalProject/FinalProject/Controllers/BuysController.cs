@@ -10,8 +10,8 @@ using FinalProject.Models;
 
 namespace FinalProject.Controllers
 {
-    [Authorize]
-    public class BuysController : Controller
+	[Authorize]
+	public class BuysController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -36,14 +36,29 @@ namespace FinalProject.Controllers
             }
             return View(buys);
         }
+		public ActionResult Create()
+		{
+			ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName");
+			ViewBag.MembersID = new SelectList(db.Users, "ID", "Email");
+			return View();
+		}
 
-        // GET: Buys/Create
-        public ActionResult Create()
+		// GET: Buys/CreateBuy/id
+		public ActionResult CreateBuy(int? id)
         {
-            ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName");
-            ViewBag.MembersID = new SelectList(db.Users, "ID", "MemberID");
-            return View();
-        }
+			var viewmodel = new ViewModle();
+		
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			viewmodel.Products = db.Products.Find(id);
+			if (viewmodel == null)
+			{
+				return HttpNotFound();
+			}
+			return View(viewmodel);
+		}
 
         // POST: Buys/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -54,13 +69,27 @@ namespace FinalProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                db.Buys.Add(buys);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName", buys.ProductsID);
+  
+            return View(buys);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBuy([Bind(Include = "ID,ProductsID,MembersID,PriceBought,DateBought")] Buys buys)
+        {
+            if (ModelState.IsValid)
+            {
                 db.Buys.Add(buys);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName", buys.ProductsID);
+           // ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName", buys.ProductsID);
             return View(buys);
         }
 

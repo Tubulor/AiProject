@@ -77,9 +77,9 @@ namespace FinalProject.Models
             set { currentTime = value; }
         }
         public virtual ICollection<Products> Product { get; set; }
-        
-        public virtual Products Products { get; set; }
 
-        public virtual ApplicationUser ApplicationUsers { get; set; }
+        public virtual Products Products { get; set; }
+		[ForeignKey("MembersID")]
+		public virtual ApplicationUser ApplicationUsers { get; set; }
     }
 }

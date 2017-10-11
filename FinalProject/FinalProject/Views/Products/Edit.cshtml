@@ -5,20 +5,15 @@
 }
 @if (!User.Identity.Name.Equals("admin@gmail.com"))
 {
-    <h2>UnAuthorize Access.</h2>
+	<h2>UnAuthorize Access.</h2>
 }
-
-
-
-else
-{
 <h2>Edit</h2>
 
 
-using (Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Products</h4>
         <hr />
@@ -119,5 +114,4 @@ using (Html.BeginForm())
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
 }
