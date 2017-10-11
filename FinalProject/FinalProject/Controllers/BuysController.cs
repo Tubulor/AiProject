@@ -37,7 +37,7 @@ namespace FinalProject.Controllers
         }
 
         // GET: Buys/Create
-        public ActionResult Create(int? id)
+        public ActionResult CreateBuy(int? id)
         {
 			var viewmodel = new ViewModle();
 		
@@ -62,13 +62,26 @@ namespace FinalProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                db.Buys.Add(buys);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName", buys.ProductsID);
+            return View(buys);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBuy([Bind(Include = "ID,ProductsID,MembersID,PriceBought,DateBought")] Buys buys)
+        {
+            if (ModelState.IsValid)
+            {
                 db.Buys.Add(buys);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName", buys.ProductsID);
+           // ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName", buys.ProductsID);
             return View(buys);
         }
 
