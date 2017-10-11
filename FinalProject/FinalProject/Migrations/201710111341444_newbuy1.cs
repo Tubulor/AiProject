@@ -3,7 +3,7 @@ namespace FinalProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newupdateforbuys : DbMigration
+    public partial class newbuy1 : DbMigration
     {
         public override void Up()
         {

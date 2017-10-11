@@ -221,9 +221,21 @@
     <Compile Include="Migrations\201710101459454_last.Designer.cs">
       <DependentUpon>201710101459454_last.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710111357112_newupdateforbuys.cs" />
-    <Compile Include="Migrations\201710111357112_newupdateforbuys.Designer.cs">
-      <DependentUpon>201710111357112_newupdateforbuys.cs</DependentUpon>
+    <Compile Include="Migrations\201710111436424_droplist.cs" />
+    <Compile Include="Migrations\201710111436424_droplist.Designer.cs">
+      <DependentUpon>201710111436424_droplist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111450102_droplist2.cs" />
+    <Compile Include="Migrations\201710111450102_droplist2.Designer.cs">
+      <DependentUpon>201710111450102_droplist2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111506286_droplist3.cs" />
+    <Compile Include="Migrations\201710111506286_droplist3.Designer.cs">
+      <DependentUpon>201710111506286_droplist3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710111512313_deleteIcollection.cs" />
+    <Compile Include="Migrations\201710111512313_deleteIcollection.Designer.cs">
+      <DependentUpon>201710111512313_deleteIcollection.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -339,8 +351,17 @@
     <EmbeddedResource Include="Migrations\201710101459454_last.resx">
       <DependentUpon>201710101459454_last.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710111357112_newupdateforbuys.resx">
-      <DependentUpon>201710111357112_newupdateforbuys.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710111436424_droplist.resx">
+      <DependentUpon>201710111436424_droplist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111450102_droplist2.resx">
+      <DependentUpon>201710111450102_droplist2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111506286_droplist3.resx">
+      <DependentUpon>201710111506286_droplist3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710111512313_deleteIcollection.resx">
+      <DependentUpon>201710111512313_deleteIcollection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

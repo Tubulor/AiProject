@@ -39,7 +39,7 @@ namespace FinalProject.Controllers
 		public ActionResult Create()
 		{
 			ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName");
-			ViewBag.MembersID = new SelectList(db.Users, "ID", "MemberID");
+			ViewBag.MembersID = new SelectList(db.Users, "ID", "Email");
 			return View();
 		}
 
@@ -74,6 +74,7 @@ namespace FinalProject.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName", buys.ProductsID);
+  
             return View(buys);
         }
 

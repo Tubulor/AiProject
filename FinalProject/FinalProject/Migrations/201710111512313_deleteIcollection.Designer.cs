@@ -7,13 +7,13 @@ namespace FinalProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class newupdateforbuys : IMigrationMetadata
+    public sealed partial class deleteIcollection : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newupdateforbuys));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(deleteIcollection));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710111357112_newupdateforbuys"; }
+            get { return "201710111512313_deleteIcollection"; }
         }
         
         string IMigrationMetadata.Source

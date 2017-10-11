@@ -31,10 +31,10 @@ else
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.MembersID, "memberID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.MembersID, "MembersID", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                 	@Html.EditorFor(model => model.MembersID, new { htmlAttributes = new { @class = "form-control" } })
-					@Html.ValidationMessageFor(model => model.MembersID, "", new { @class = "text-danger" })
+                    @Html.DropDownList("MembersID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MembersID, "", new { @class = "text-danger" })
                 </div>
             </div>
 
