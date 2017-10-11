@@ -37,12 +37,21 @@ namespace FinalProject.Controllers
         }
 
         // GET: Buys/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName");
-            ViewBag.MembersID = new SelectList(db.Users, "ID", "MemberID");
-            return View();
-        }
+			var viewmodel = new ViewModle();
+		
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			viewmodel.Products = db.Products.Find(id);
+			if (viewmodel == null)
+			{
+				return HttpNotFound();
+			}
+			return View(viewmodel);
+		}
 
         // POST: Buys/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

@@ -11,9 +11,9 @@
 
 		<form action="/action_page.php">
 
-			<h3>Post serach :</h3>
+			<h3>Product serach :</h3>
 
-			<p>
+			<p> ignore ....
 				Date:<input type="date" name="date">&nbsp;
 				to:&nbsp;<input type="date" name="date">
 				<br>
@@ -31,7 +31,84 @@
 			</p>
 
 		</form>
-	
+
+		@foreach (var item in Model.Product)
+		{
+			<h4>@Html.DisplayFor(model => item.ProductName)</h4>
+
+			<dt>
+				@Html.DisplayNameFor(model => item.Price)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => item.Price)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => item.Description)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => item.Description)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => item.Brand)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => item.Brand)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => item.Inches)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => item.Inches)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => item.Resolution)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => item.Resolution)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => item.RefreshRate)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => item.RefreshRate)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => item.Discount)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => item.Discount)
+			</dd>
+			<p>
+				<img src="@Html.DisplayFor(modelItem =>item.Image)" height="240" width="320">
+			</p>
+
+			<video width="320" height="240" controls>
+				<source src="@Html.DisplayFor(modelItem =>item.Video)" type="video/mp4">
+			</video>
+
+			<p>
+				<button class="button button1" onclick="location.href='@Url.Action("Create", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'" >BUY!</button>
+
+			</p>
+			<hr>
+
+
+				}
+
+
 
 
 
