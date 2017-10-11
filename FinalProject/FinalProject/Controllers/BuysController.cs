@@ -21,9 +21,14 @@ namespace FinalProject.Controllers
             var buys = db.Buys.Include(b => b.Products);
             return View(buys.ToList());
         }
+		public ActionResult Statistics()
+		{
+			var buys = db.Buys.Include(b => b.Products);
+			return View(buys.ToList());
+		}
 
-        // GET: Buys/Details/5
-        public ActionResult Details(int? id)
+		// GET: Buys/Details/5
+		public ActionResult Details(int? id)
         {
             if (id == null)
             {
