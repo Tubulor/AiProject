@@ -27,8 +27,16 @@ namespace FinalProject.Controllers
 			return View(buys.ToList());
 		}
 
-		// GET: Buys/Details/5
-		public ActionResult Details(int? id)
+        public ActionResult ProductBuys()
+        {
+            var viewmodel = new ViewModle();
+            viewmodel.Buy = db.Buys;
+            viewmodel.Product = db.Products;
+            return View(viewmodel);
+        }
+    
+        // GET: Buys/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
