@@ -106,6 +106,25 @@
             <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share on FB</a></div>
             <div id="content">
                 <!-- Footer -->
+                <h3>Google Maps Demo</h3>
+                <div id="map"></div>
+                <script>
+                    function initMap() {
+                        var uluru = { lat: -25.363, lng: 131.044 };
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 4,
+                            center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                        });
+                    }
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp4Dy86exFzK18bAlSuX50mTliFahUINU&callback=initMap">
+                </script>
+
                 <section id="about">
                     <h3>About</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut la</p>
@@ -125,24 +144,7 @@
                         <li><a href="#">Consectetur adipisicing elit, sed do eiusmod</a></li>
                     </ul>
                 </section>
-                <h3>Google Maps Demo</h3>
-                <div id="map"></div>
-                <script>
-                    function initMap() {
-                        var uluru = { lat: -25.363, lng: 131.044 };
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 4,
-                            center: uluru
-                        });
-                        var marker = new google.maps.Marker({
-                            position: uluru,
-                            map: map
-                        });
-                    }
-                </script>
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp4Dy86exFzK18bAlSuX50mTliFahUINU&callback=initMap">
-                </script>
+                
 
             </div>
         </footer>
