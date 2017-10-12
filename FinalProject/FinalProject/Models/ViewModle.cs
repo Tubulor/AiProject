@@ -9,8 +9,10 @@ namespace FinalProject.Models
     {
 
         public IEnumerable<Products> Product { get; set; }
+        public IEnumerable<Buys> Buy { get; set; }
         public IEnumerable<ApplicationUser> ApplicationUser { get; set; }
         public Buys Buys { get; set; }
 		public Products Products { get; set; }
+
     }
 }
