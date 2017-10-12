@@ -1,15 +1,57 @@
 ﻿@model FinalProject.Models.ViewModle
+
 @using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "ProductBuys";
 }
-@{
-
-    var buys = Model.Buys.GroupBy(buys => buys.ProductsID).OrderBy
-
-}
-
 
 <h2>ProductBuys</h2>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #000000;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Times Bought</th>
+    </tr>
+
+    @foreach (var group in Model.Buy.GroupBy(m => m.ProductsID).Select(g => new { ProductID = g.Key, Count = g.Count() }))
+    {
+        foreach (var productid in Model.Product.Where(productid => productid.ID == group.ProductID))
+
+        {
+            <tr>
+                <td>@group.ProductID</td>
+                <td>@productid.ProductName</td>
+                <td>@group.Count</td>
+            </tr>
+        }
+    }
+
+
+</table>
+
+
+
+
+
+
 
