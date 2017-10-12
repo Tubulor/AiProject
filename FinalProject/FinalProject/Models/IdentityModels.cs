@@ -36,6 +36,8 @@ namespace FinalProject.Models
 
         public DbSet<Products> Products { get; set; }
         public DbSet<Buys> Buys { get; set; }
+
+        public DbSet<Branches> Branches { get; set; }
     }
 
     public class Products
@@ -81,5 +83,23 @@ namespace FinalProject.Models
         public virtual Products Products { get; set; }
 		[ForeignKey("MembersID")]
 		public virtual ApplicationUser ApplicationUsers { get; set; }
+    }
+
+    public class Branches
+    {
+        [Key]
+        public int ID { get; set; }
+        [Required]
+        public string BranchName { get; set; }
+        [Required]
+        public string Country { get; set; }
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string HouseNumber { get; set; }
+        [Required]
+        public string Street { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
     }
 }
