@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FinalProject.Models.Products>
+@model IEnumerable<FinalProject.Models.Products>
 
 @{
     ViewBag.Title = "Index";
@@ -13,7 +13,12 @@
 else
 {
 <h2>Index</h2>
-
+<form asp-controller="Products" asp-action="Index" method="get">
+    <p>
+        Product Name: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
