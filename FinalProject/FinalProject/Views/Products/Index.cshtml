@@ -3,7 +3,15 @@
 @{
     ViewBag.Title = "Index";
 }
+@if (!User.Identity.Name.Equals("admin@gmail.com"))
+{
+    <h2>UnAuthorize Access.</h2>
+}
 
+
+
+else
+{
 <h2>Index</h2>
 
 <p>
@@ -44,7 +52,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ProductName)
@@ -77,11 +86,12 @@
             @Html.DisplayFor(modelItem => item.Discount)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>
 }
 
 </table>
+}
