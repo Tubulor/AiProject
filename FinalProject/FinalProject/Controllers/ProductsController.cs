@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinalProject.Models;
+using System.Threading.Tasks;
 
 namespace FinalProject.Controllers
 {
@@ -14,10 +15,31 @@ namespace FinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Products
-        public ActionResult Index()
+
+        //// GET: Products
+        //public ActionResult Index()
+        //{
+        //    return View(db.Products.ToList());
+        //}
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
         {
-            return View(db.Products.ToList());
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+
+        // GET: Products
+        public async Task<ActionResult> Index(string searchString)
+        {
+            var products = from p in db.Products
+                           select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.ProductName.Contains(searchString));
+            }
+
+            return View(await products.ToListAsync());
         }
 
         // GET: Products/Details/5

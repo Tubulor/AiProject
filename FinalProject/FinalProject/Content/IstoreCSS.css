@@ -1,4 +1,4 @@
-﻿/*------------------------------
+/*------------------------------
 =BASIC SETUP
 ------------------------------*/
 #transDemo2 div {
@@ -88,9 +88,10 @@ hr {
 	margin-left: 15px;
 	margin-top: auto;
 }
-p.price {
-	color : green;
-	font-weight: bold;
+
+.product-info p.price {
+    color: green;
+    font-weight: bold;
 }
 
 
