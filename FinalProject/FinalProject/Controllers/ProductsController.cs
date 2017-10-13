@@ -23,23 +23,31 @@ namespace FinalProject.Controllers
         //}
 
         [HttpPost]
-        public string Index(string searchString, bool notUsed)
+        public string Index(string brand, string inches, string resolution, bool notUsed)
         {
-            return "From [HttpPost]Index: filter on " + searchString;
+            return "From [HttpPost]Index: filter on " + resolution;
         }
 
         // GET: Products
-        public async Task<ActionResult> SearchBy(string searchString)
+        public async Task<ActionResult> Index(string brand, string inches, string resolution)
         {
             var products = from p in db.Products
                            select p;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(brand))
             {
-                products = products.Where(s => s.ProductName.Contains(searchString));
+                products = products.Where(s => s.Brand.Equals(brand));
+            }
+            if (!String.IsNullOrEmpty(inches))
+            {
+                products = products.Where(s => s.Inches.Equals(brand));
+            }
+            if (!String.IsNullOrEmpty(resolution))
+            {
+                products = products.Where(s => s.Inches.Equals(resolution));
             }
 
-            return View(await products.ToListAsync());
+                return View(await products.ToListAsync());
         }
 
         // GET: Products/Details/5
