@@ -29,7 +29,7 @@ namespace FinalProject.Controllers
         }
 
         // GET: Products
-        public async Task<ActionResult> Index(string searchString)
+        public async Task<ActionResult> SearchBy(string searchString)
         {
             var products = from p in db.Products
                            select p;
