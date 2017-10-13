@@ -94,6 +94,7 @@ p.price {
 }
 
 
+
 /* Tell the browser to render HTML 5 elements as block */
 header, footer, section, aside, nav, article {
 	display: block;

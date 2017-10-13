@@ -330,6 +330,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\csv\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
