@@ -1,4 +1,4 @@
-﻿/*------------------------------
+/*------------------------------
 =BASIC SETUP
 ------------------------------*/
 #transDemo2 div {
@@ -7,7 +7,7 @@
 	text-align: center;
 	-webkit-transition: all 2s ease-in-out;
 	-moz-transition: all 2s ease-in-out;
-	-ms-transition: all 2s ease-in-out;
+	/*-ms-transition: all 2s ease-in-out;*/
 	transition: all 2s ease-in-out;
 }
 
@@ -416,7 +416,7 @@ footer {
 	footer div {
 		display: table;
 		margin: 0 auto;
-		padding: 30px 0;
+		padding: 100px 0;
 		width: 940px;
 		color: #777;
 	}
@@ -424,10 +424,6 @@ footer {
 		footer div section {
 			display: table-cell;
 			width: 300px;
-		}
-
-		footer div #about, footer div #blogroll {
-		
 		}
 
 	footer h3 {
