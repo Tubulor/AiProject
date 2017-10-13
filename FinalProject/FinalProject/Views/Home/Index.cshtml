@@ -37,7 +37,7 @@
 					RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
 					Discount- @Html.DisplayFor(model => item.Discount)<br>
 				</h3>
-                <p class="price"><h3>Price - @Html.DisplayFor(model => item.Price)</h3></p>	
+                <p style="font-size:x-large" class="price">Price - @Html.DisplayFor(model => item.Price)</p>	
 			</div>
 			<p>
 				<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>

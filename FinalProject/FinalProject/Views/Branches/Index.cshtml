@@ -4,8 +4,40 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h3>Filter branches by:</h3>
+<form asp-controller="Branches" asp-action="Index" method="get">
+    <p>
+        Country: <input list="countries" name="Country">
+        <datalist id="countries">
+            <option value="US">
+            <option value="Israel">
+            <option value="UK">
+            <option value="Japan">
+            <option value="Thailand">
+        </datalist>
+    </p>
+    <p>
+        City: <input list="City" name="City">
+        <datalist id="City">
+            <option value="20">
+            <option value="25">
+            <option value="30">
+            <option value="35">
+            <option value="40">
+        </datalist>
+    </p>
+    <p>
+        Street: <input list="Street" name="Street">
+        <datalist id="Street">
+            <option value="720 HD">
+            <option value="720 Full HD">
+            <option value="1080 HD">
+            <option value="1080 Full HD">
+            <option value="4K">
+        </datalist>
+    </p>
+    <input type="submit" value="Filter" />
+</form>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

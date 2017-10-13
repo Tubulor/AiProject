@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinalProject.Models;
+using System.Threading.Tasks;
 
 namespace FinalProject.Controllers
 {
@@ -14,10 +15,38 @@ namespace FinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Branches
-        public ActionResult Index()
+        //// GET: Branches
+        //public ActionResult Index()
+        //{
+        //    return View(db.Branches.ToList());
+        //}
+
+        [HttpPost]
+        public string Index(string country, string city, string street, bool notUsed)
         {
-            return View(db.Branches.ToList());
+            return "From [HttpPost]Index: filter on " + street;
+        }
+
+        // GET: Products
+        public async Task<ActionResult> Index(string country, string city, string street)
+        {
+            var branches = from p in db.Branches
+                           select p;
+
+            if (!String.IsNullOrEmpty(country))
+            {
+                branches = branches.Where(s => s.Country.Equals(country));
+            }
+            if (!String.IsNullOrEmpty(city))
+            {
+                branches = branches.Where(s => s.City.Equals(city));
+            }
+            if (!String.IsNullOrEmpty(street))
+            {
+                branches = branches.Where(s => s.Street.Equals(street));
+            }
+
+            return View(await branches.ToListAsync());
         }
 
         // GET: Branches/Details/5

@@ -2,13 +2,13 @@
 =BASIC SETUP
 ------------------------------*/
 #transDemo2 div {
-	height: 30px;
-	width: 30px;
-	text-align: center;
-	-webkit-transition: all 2s ease-in-out;
-	-moz-transition: all 2s ease-in-out;
-	-ms-transition: all 2s ease-in-out;
-	transition: all 2s ease-in-out;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    /*-ms-transition: all 2s ease-in-out;*/
+    transition: all 2s ease-in-out;
 }
 
 	#transDemo2 div:hover, #transDemo2 div.hover_effect {
