@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Buys.MembersID, "PostID", htmlAttributes: new { @class = "hidden" })
+                @Html.LabelFor(model => model.Buys.MembersID, "MemberID", htmlAttributes: new { @class = "hidden" })
                 @Html.HiddenFor(model => model.Buys.MembersID, new { Value = @User.Identity.GetUserId()})
                 <div class="col-md-10">
                     @Html.ValidationMessageFor(model => model.Buys.MembersID, "", new { @class = "text-danger" })
