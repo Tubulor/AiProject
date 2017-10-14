@@ -50,8 +50,42 @@ namespace FinalProject.Controllers
                 return View(await products.ToListAsync());
         }
 
-        // GET: Products/Details/5
-        public ActionResult Details(int? id)
+		[HttpPost]
+		public string Index(string brand, string inches, string resolution, bool notUsed)
+		{
+			return "From [HttpPost]Index: filter on " + resolution;
+		}
+
+	/*	[HttpPost]
+		public string Index(string brand, string inches, string resolution, bool notUsed)
+		{
+			return "From [HttpPost]Index: filter on " + resolution;
+		}
+
+		// GET: Products
+		public async Task<ActionResult> Index(string brand, string inches, string resolution)
+		{
+			var products = from p in db.Products
+						   select p;
+
+			if (!String.IsNullOrEmpty(brand))
+			{
+				products = products.Where(s => s.Brand.Equals(brand));
+			}
+			if (!String.IsNullOrEmpty(inches))
+			{
+				products = products.Where(s => s.Inches.Equals(brand));
+			}
+			if (!String.IsNullOrEmpty(resolution))
+			{
+				products = products.Where(s => s.Resolution.Equals(resolution));
+			}
+
+			return View(await products.ToListAsync());
+		}
+*/
+		// GET: Products/Details/5
+		public ActionResult Details(int? id)
         {
             if (id == null)
             {

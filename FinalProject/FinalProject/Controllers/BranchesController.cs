@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinalProject.Models;
-using System.Threading.Tasks;
 
 namespace FinalProject.Controllers
 {
@@ -15,42 +14,34 @@ namespace FinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        //// GET: Branches
-        //public ActionResult Index()
-        //{
-        //    return View(db.Branches.ToList());
-        //}
-
-        [HttpPost]
-        public string Index(string country, string city, string street, bool notUsed)
+        // GET: Branches
+        public ActionResult Index()
         {
-            return "From [HttpPost]Index: filter on " + street;
+            return View(db.Branches.ToList());
         }
+		public PartialViewResult BranchSearch(String branchname, String country)
+		{
 
-        // GET: Products
-        public async Task<ActionResult> Index(string country, string city, string street)
-        {
-            var branches = from p in db.Branches
-                           select p;
+			List<Branches> model = (from p in db.Branches
+								   select p).ToList();
 
-            if (!String.IsNullOrEmpty(country))
-            {
-                branches = branches.Where(s => s.Country.Equals(country));
-            }
-            if (!String.IsNullOrEmpty(city))
-            {
-                branches = branches.Where(s => s.City.Equals(city));
-            }
-            if (!String.IsNullOrEmpty(street))
-            {
-                branches = branches.Where(s => s.Street.Equals(street));
-            }
+			/*if(branchname.Equals("NULL"))
+			{
+				model = model.Where(x => x.BranchName.Equals(branchname)).ToList();
+			}*/
+				//model = model.Where(x => x.Country.Equals(country)).ToList();
+			
+			/*if (!String.IsNullOrEmpty(resolution))
+			{
+				products = products.Where(s => s.Resolution.Equals(resolution));
+			}
+			*/
+			
+			return PartialView("BranchSearch",model);
+		}
 
-            return View(await branches.ToListAsync());
-        }
-
-        // GET: Branches/Details/5
-        public ActionResult Details(int? id)
+		// GET: Branches/Details/5
+		public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -75,7 +66,7 @@ namespace FinalProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,BranchName,Country,City,HouseNumber,Street,PhoneNumber")] Branches branches)
+        public ActionResult Create([Bind(Include = "ID,BranchName,Country,City,HouseNumber,Street,PhoneNumber,Saturday,BranchNumber,Image")] Branches branches)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +98,7 @@ namespace FinalProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,BranchName,Country,City,HouseNumber,Street,PhoneNumber")] Branches branches)
+        public ActionResult Edit([Bind(Include = "ID,BranchName,Country,City,HouseNumber,Street,PhoneNumber,Saturday,BranchNumber,Image")] Branches branches)
         {
             if (ModelState.IsValid)
             {

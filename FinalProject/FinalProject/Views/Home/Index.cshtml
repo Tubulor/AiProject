@@ -1,4 +1,4 @@
-@model FinalProject.Models.ViewModle
+﻿@model FinalProject.Models.ViewModle
 
 @{
 	ViewBag.Title = "Home Page";
@@ -8,51 +8,77 @@
 
 <link rel="stylesheet" href="~/Content/IstoreCSS.css" type="text/css" media="screen" />
 
-<h3>Filter products by name:</h3>
-<form asp-controller="Home" asp-action="Index" method="get">
-    <p>
-        Enter full or partial text here: <input type="text" name="SearchString">
-        <input type="submit" value="Filter" />
-    </p>
+
+<h3>Filter products by:</h3>
+<form asp-controller="Products" asp-action="Index" method="get">
+	<p>
+		Brand: <input list="brands" name="Brand">
+		<datalist id="brands">
+			<option value="LG">
+			<option value="Apple">
+			<option value="Samsung">
+			<option value="Toshiba">
+			<option value="Fujicom">
+		</datalist>
+	</p>
+	<p>
+		Inches: <input list="inches" name="Inches">
+		<datalist id="inches">
+			<option value="20">
+			<option value="25">
+			<option value="30">
+			<option value="35">
+			<option value="40">
+		</datalist>
+	</p>
+	<p>
+		Resolution: <input list="resolution" name="Resolution">
+		<datalist id="resolution">
+			<option value="720 HD">
+			<option value="720 Full HD">
+			<option value="1080 HD">
+			<option value="1080 Full HD">
+			<option value="4K">
+		</datalist>
+	</p>
+	<input type="submit" value="Filter" />
 </form>
+
+
+
+	@Html.Partial("~/Views/Buys/MostPopular.cshtml");
 
 <section class="products">
 
-	
-	@foreach (var item in Model.Product)
-	{
+
+		@foreach (var item in Model.Product)
+		{
 		<!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
 
-		<div class="product-card">
-			<div class="product-image">
-				<img src="@Html.DisplayFor(modelItem => item.Image)" width="200" height="150">
+			<div class="product-card">
+				<div class="product-image">
+					<img src="@Html.DisplayFor(modelItem => item.Image)" width="200" height="150">
+				</div>
+				<div class="product-info">
+					<h2>@Html.DisplayFor(model => item.ProductName)</h2>
+					<h3>
+						Description - @Html.DisplayFor(model => item.Description)<br>
+						Brand - @Html.DisplayFor(model => item.Brand)<br>
+						Inches - @Html.DisplayFor(model => item.Inches)<br>
+						Resolution - @Html.DisplayFor(model => item.Resolution)<br>
+						RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
+						Discount- @Html.DisplayFor(model => item.Discount)<br>
+						<p class="price">Price - @Html.DisplayFor(model => item.Price)</p>
+					</h3>
+				</div>
+				<p>
+					<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
+				</p>
 			</div>
-			<div class="product-info">
-				<h2>@Html.DisplayFor(model => item.ProductName)</h2>
-				<h3>
-					Description - @Html.DisplayFor(model => item.Description)<br>
-					Brand - @Html.DisplayFor(model => item.Brand)<br>
-					Inches - @Html.DisplayFor(model => item.Inches)<br>
-					Resolution - @Html.DisplayFor(model => item.Resolution)<br>
-					RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
-					Discount- @Html.DisplayFor(model => item.Discount)<br>
-				</h3>
-                <p style="font-size:x-large" class="price">Price - @Html.DisplayFor(model => item.Price)</p>	
-			</div>
-			<p>
-				<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
-			</p>
-		</div>
-		<hr>
-	}
-	<!-- more products -->
+			<hr>
+		}
+		<!-- more products -->
 
-
-		
-		
-
-	
-	
 </section>
 
 

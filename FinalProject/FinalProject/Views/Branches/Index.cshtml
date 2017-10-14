@@ -1,95 +1,179 @@
 ﻿@model IEnumerable<FinalProject.Models.Branches>
 
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
-<h3>Filter branches by:</h3>
-<form asp-controller="Branches" asp-action="Index" method="get">
-    <p>
-        Country: <input list="countries" name="Country">
-        <datalist id="countries">
-            <option value="US">
-            <option value="Israel">
-            <option value="UK">
-            <option value="Japan">
-            <option value="Thailand">
-        </datalist>
-    </p>
-    <p>
-        City: <input list="City" name="City">
-        <datalist id="City">
-            <option value="20">
-            <option value="25">
-            <option value="30">
-            <option value="35">
-            <option value="40">
-        </datalist>
-    </p>
-    <p>
-        Street: <input list="Street" name="Street">
-        <datalist id="Street">
-            <option value="720 HD">
-            <option value="720 Full HD">
-            <option value="1080 HD">
-            <option value="1080 Full HD">
-            <option value="4K">
-        </datalist>
-    </p>
-    <input type="submit" value="Filter" />
-</form>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BranchName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HouseNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BranchName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HouseNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Street)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+@if (User.Identity.Name.Equals("admin@gmail.com"))
+{
+
+	<h2>Index</h2>
+
+	<p>
+		@Html.ActionLink("Create New", "Create")
+	</p>
+	<table class="table">
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.BranchName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Country)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.City)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.HouseNumber)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Street)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PhoneNumber)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Saturday)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.BranchNumber)
+			</th>
+			<th></th>
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.BranchName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Country)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.City)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.HouseNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Street)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PhoneNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Saturday)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.BranchNumber)
+				</td>
+				<td>
+					@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+					@Html.ActionLink("Details", "Details", new { id = item.ID }) |
+					@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+				</td>
+			</tr>
+		}
+
+	</table>
 }
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using (Ajax.BeginForm("BranchSearch", "Branches",
+		new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "searchResults" }))
+{
+	<h3>Search:</h3>
+	<p>Branch name :</p>@Html.TextBox("Search", null, new { id = "branchname" })
+	@*<p>Country :</p>@Html.TextBox("country", null, new { id = "country" })*@
+	<input type="submit" value="Search" class="btn btn-primary" />
+}
+<div id="searchResults">
+		
+	@foreach (var item in Model)
+	{
+		var status = "";
 
-</table>
+		if (item.Saturday)
+		{
+			status = "Open";
+		}
+		else
+		{
+			status = "Close";
+		}
+
+
+
+		<div class="product-card">
+			<div class="product-image">
+				<img src="@Html.DisplayFor(model => item.Image)">
+			</div>
+			<div class="product-info">
+				<h2>@Html.DisplayFor(model => item.BranchName)</h2>
+				<h3>
+					<b>Country</b> - @Html.DisplayFor(model => item.Country)<br>
+					<b>City</b> - @Html.DisplayFor(model => item.City)<br>
+					<b>Street</b> - @Html.DisplayFor(model => item.Street)<br>
+					<b>House number</b> - @Html.DisplayFor(model => item.HouseNumber)<br>
+					<b>Phone number</b> - @Html.DisplayFor(model => item.PhoneNumber)<br>
+					<b>Saturday</b> - @status <br>
+					<b>Branch number</b> - @Html.DisplayFor(model => item.BranchNumber)
+				</h3>
+			</div>
+		</div>
+
+		<hr>
+	}
+</div>
+
+<div class="apis">
+	<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share on FB</a></div>
+	<h3>Google Maps Demo</h3>
+	<div id="map"></div>
+	<script>
+		function initMap() {
+			var uluru = { lat: -25.363, lng: 131.044 };
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 4,
+				center: uluru
+			});
+			var marker = new google.maps.Marker({
+				position: uluru,
+				map: map
+			});
+		}
+	</script>
+	<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp4Dy86exFzK18bAlSuX50mTliFahUINU&callback=initMap">
+	</script>
+</div>
+<html>
+<head>
+	<title>Your Website Title</title>
+	<!-- You can use Open Graph tags to customize link previews.
+	Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+	<meta property="og:url" content="http://www.your-domain.com/your-page.html" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Your Website Title" />
+	<meta property="og:description" content="Your description" />
+	<meta property="og:image" content="http://www.your-domain.com/path/image.jpg" />
+</head>
+<body>
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	<!-- Your share button code -->
+	<div class="fb-share-button"
+		 data-href="http://www.your-domain.com/your-page.html"
+		 data-layout="button_count">
+	</div>
+</body>
+</html>

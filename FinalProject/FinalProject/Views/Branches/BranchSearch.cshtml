@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FinalProject.Models.Branches>
+
+@foreach (var item in Model)
+{
+	var status = "";
+
+	if (item.Saturday)
+	{
+		status = "Open";
+	}
+	else
+	{
+		status = "Close";
+	}
+
+	<div class="product-card">
+		<div class="product-image">
+			<img src="@Html.DisplayFor(model => item.Image)">
+		</div>
+		<div class="product-info">
+			<h2>@Html.DisplayFor(model => item.BranchName)</h2>
+			<h3>
+				<b>Country</b> - @Html.DisplayFor(model => item.Country)<br>
+				<b>City</b> - @Html.DisplayFor(model => item.City)<br>
+				<b>Street</b> - @Html.DisplayFor(model => item.Street)<br>
+				<b>House number</b> - @Html.DisplayFor(model => item.HouseNumber)<br>
+				<b>Phone number</b> - @Html.DisplayFor(model => item.PhoneNumber)<br>
+				<b>Saturday</b> - @status <br>
+				<b>Branch number</b> - @Html.DisplayFor(model => item.BranchNumber)
+			</h3>
+		</div>
+	</div>
+
+	<hr>
+}

@@ -1,9 +1,7 @@
 ﻿using FinalProject.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,42 +10,44 @@ namespace FinalProject.Controllers
     public class HomeController : Controller
     {
 		private ApplicationDbContext db = new ApplicationDbContext();
-        [HttpPost]
-        public string Index(string searchString, bool notUsed)
+		public ActionResult Index()
         {
-            return "From [HttpPost]Index: filter on " + searchString;
-        }
+			var viewmodel = new ViewModle();
+			viewmodel.Product = db.Products.ToList();
+			viewmodel.Buy = db.Buys.ToList();
+			return View(viewmodel);
+		}
 
-        // GET: Products
-        public ActionResult Index(string searchString)
-        {
-            var products = from p in db.Products
-                           select p;
+	/*	[HttpPost]
+		public string Index(string brand, string inches, string resolution, bool notUsed)
+		{
+			return "From [HttpPost]Index: filter on " + resolution;
+		}
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                products = products.Where(s => s.ProductName.Contains(searchString));
-            }
+		// GET: Products
+		public async Task<ActionResult> Index(string brand, string inches, string resolution)
+		{
+			var products = from p in db.Products
+						   select p;
 
-            var viewmodel = new ViewModle
-            {
-                Product = products.ToList()
-            };
+			if (!String.IsNullOrEmpty(brand))
+			{
+				products = products.Where(s => s.Brand.Equals(brand));
+			}
+			if (!String.IsNullOrEmpty(inches))
+			{
+				products = products.Where(s => s.Inches.Equals(brand));
+			}
+			if (!String.IsNullOrEmpty(resolution))
+			{
+				products = products.Where(s => s.Resolution.Equals(resolution));
+			}
 
-            return View(viewmodel);
-        }
-  //      public ActionResult Index()
-  //      {
-  //          var viewmodel = new ViewModle
-  //          {
-  //              Product = db.Products.ToList()
-  //          };
+			return View(await products.ToListAsync());
+		}
+		*/
 
-  //          return View(viewmodel);
-		//}
-		
-
-        public ActionResult About()
+		public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 

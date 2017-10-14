@@ -35,6 +35,13 @@ namespace FinalProject.Controllers
 			viewmodel.Product = db.Products;
 			return View(viewmodel);
 		}
+		public ActionResult MostPopular()
+		{
+			var viewmodel = new ViewModle();
+			viewmodel.Product = db.Products.ToList();
+			viewmodel.Buy = db.Buys.ToList();
+			return View(viewmodel);
+		}
 
 		// GET: Buys/Details/5
 		public ActionResult Details(int? id)
@@ -100,7 +107,7 @@ namespace FinalProject.Controllers
 			{
 				db.Buys.Add(buys);
 				db.SaveChanges();
-				return RedirectToAction("Index");
+				return RedirectToAction("Index", "Home");
 			}
 
 			// ViewBag.ProductsID = new SelectList(db.Products, "ID", "ProductName", buys.ProductsID);
@@ -180,7 +187,7 @@ namespace FinalProject.Controllers
 			List<Result> salesCount = new List<Result>();
 
 			var myQuery = from c in db.Buys
-						  join p in db.Products on c.Products.ProductName equals p.ProductName
+						  join p in db.Products on c.Products.ID equals p.ID
 						  select c;
 
 			var myGroup = from t in myQuery
@@ -202,27 +209,29 @@ namespace FinalProject.Controllers
 		}
 
 
-		public JsonResult SalesPerDay()
+		public JsonResult SalesPerbrand()
 		{
 			List<Result> salesCount = new List<Result>();
 
 			var myQuery = from c in db.Buys
-						  join p in db.Products on c.Products.ProductName equals p.ProductName
+						  join p in db.Products on c.ProductsID equals p.ID
 						  select c;
 
-			var myGroup = from t in myQuery
-						  group t by t.Products.ProductName into cat
-						  select new
+			var myQuery2 = from t in myQuery
+						   group t by t.Products.Brand into brand
+							select new
 						  {
-							  productName = cat.Key,
-							  sum = cat.Count()
+							  Brand = brand.Key,
+							  sum = brand.Sum(x => x.Products.Price)
 						  };
 
-			foreach (var item in myGroup)
+						
+
+			foreach (var item in myQuery2)
 			{
 				Result numReviews = new Result();
-				numReviews.State = item.productName;
-				numReviews.freq = item.sum;
+				numReviews.State = item.Brand;
+				numReviews.freq = Convert.ToInt32(item.sum);
 				salesCount.Add(numReviews);
 			}
 			return Json(salesCount, JsonRequestBehavior.AllowGet);
