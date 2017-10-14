@@ -26,28 +26,53 @@
     }
 </style>
 
-<table>
-    <tr>
-        <th>Product ID</th>
-        <th>Product Name</th>
-        <th>Times Bought</th>
-    </tr>
 
-    @foreach (var group in Model.Buy.GroupBy(m => m.ProductsID).Select(g => new { ProductID = g.Key, Count = g.Count() }))
-    {
-        foreach (var productid in Model.Product.Where(productid => productid.ID == group.ProductID))
+	@{
+		var firstelement = Model.Buy.GroupBy(m => m.ProductsID).Select(g => new { ProductID = g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).First();
+		var viewresult = (from m in Model.Product
+						  where m.ID == firstelement.ProductID
+						  select m).ToList();
 
-        {
-            <tr>
-                <td>@group.ProductID</td>
-                <td>@productid.ProductName</td>
-                <td>@group.Count</td>
-            </tr>
-        }
-    }
+		var group = Model.Product.Where(x => x.ID == firstelement.ProductID).Select(x => new
+		{
+			x.ID,
+			x.ProductName,
+			x.Image,
+			x.Inches,
+			x.Price,
+			x.RefreshRate,
+			x.Resolution,
+			x.Video,
+			x.Discount,
+			x.Brand,
+			x.Description
+		}).First();
 
 
-</table>
+		<div class="product-card">
+			<div class="product-image">
+				<img src="@group.Image" width="200" height="150">
+			</div>
+			<div class="product-info">
+				<h2>@group.ProductName</h2>
+				<h3>
+					Description - @group.Description<br>
+					Brand - @group.Brand<br>
+					Inches - @group.Inches<br>
+					Resolution - @group.Resolution<br>
+					RefreshRate - @group.RefreshRate<br>
+					Discount- @group.Discount<br>
+					<p class="price">Price - @group.Price</p>
+				</h3>
+			</div>
+			<p>
+				<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @group.ID })'">BUY!</button>
+			</p>
+
+		</div>
+
+	}	
+
 
 
 

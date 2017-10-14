@@ -14,7 +14,7 @@ namespace FinalProject.Controllers
         {
 			var viewmodel = new ViewModle();
 			viewmodel.Product = db.Products.ToList();
-
+			viewmodel.Buy = db.Buys.ToList();
 			return View(viewmodel);
 		}
 		

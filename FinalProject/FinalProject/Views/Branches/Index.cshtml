@@ -1,0 +1,128 @@
+﻿@model IEnumerable<FinalProject.Models.Branches>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+
+@if (User.Identity.Name.Equals("admin@gmail.com"))
+{
+
+	<h2>Index</h2>
+
+	<p>
+		@Html.ActionLink("Create New", "Create")
+	</p>
+	<table class="table">
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.BranchName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Country)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.City)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.HouseNumber)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Street)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PhoneNumber)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Saturday)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.BranchNumber)
+			</th>
+			<th></th>
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.BranchName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Country)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.City)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.HouseNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Street)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PhoneNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Saturday)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.BranchNumber)
+				</td>
+				<td>
+					@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+					@Html.ActionLink("Details", "Details", new { id = item.ID }) |
+					@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+				</td>
+			</tr>
+		}
+
+	</table>
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@using (Ajax.BeginForm("BranchSearch", "Branches",
+		new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "searchResults" }))
+{
+	<h3>Search:</h3>
+	@Html.TextBox("Search", null, new { id = "Search" })
+	<input type="submit" value="Search" class="btn btn-primary" />
+}
+<div id="searchResults">
+		
+	@foreach (var item in Model)
+	{
+		var status = "";
+
+		if (item.Saturday)
+		{
+			status = "Open";
+		}
+		else
+		{
+			status = "Close";
+		}
+
+
+
+		<div class="product-card">
+			<div class="product-image">
+				<img src="@Html.DisplayFor(model => item.Image)">
+			</div>
+			<div class="product-info">
+				<h2>@Html.DisplayFor(model => item.BranchName)</h2>
+				<h3>
+					<b>Country</b> - @Html.DisplayFor(model => item.Country)<br>
+					<b>City</b> - @Html.DisplayFor(model => item.City)<br>
+					<b>Street</b> - @Html.DisplayFor(model => item.Street)<br>
+					<b>House number</b> - @Html.DisplayFor(model => item.HouseNumber)<br>
+					<b>Phone number</b> - @Html.DisplayFor(model => item.PhoneNumber)<br>
+					<b>Saturday</b> - @status <br>
+					<b>Branch number</b> - @Html.DisplayFor(model => item.BranchNumber)
+				</h3>
+			</div>
+		</div>
+
+		<hr>
+	}
+</div>

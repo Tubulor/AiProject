@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\BuysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -244,6 +245,14 @@
     <Compile Include="Migrations\201710121357437_BranchesIsOn2.cs" />
     <Compile Include="Migrations\201710121357437_BranchesIsOn2.Designer.cs">
       <DependentUpon>201710121357437_BranchesIsOn2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710132111274_BranchUpdate.cs" />
+    <Compile Include="Migrations\201710132111274_BranchUpdate.Designer.cs">
+      <DependentUpon>201710132111274_BranchUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710132138274_BranchImages.cs" />
+    <Compile Include="Migrations\201710132138274_BranchImages.Designer.cs">
+      <DependentUpon>201710132138274_BranchImages.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -335,6 +344,13 @@
     <Content Include="Views\Buys\CreateBuy.cshtml" />
     <Content Include="Views\Buys\Statistics.cshtml" />
     <Content Include="Views\Buys\ProductBuys.cshtml" />
+    <Content Include="Views\Buys\MostPopular.cshtml" />
+    <Content Include="Views\Branches\Create.cshtml" />
+    <Content Include="Views\Branches\Delete.cshtml" />
+    <Content Include="Views\Branches\Details.cshtml" />
+    <Content Include="Views\Branches\Edit.cshtml" />
+    <Content Include="Views\Branches\Index.cshtml" />
+    <Content Include="Views\Branches\BranchSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -379,6 +395,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710121357437_BranchesIsOn2.resx">
       <DependentUpon>201710121357437_BranchesIsOn2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710132111274_BranchUpdate.resx">
+      <DependentUpon>201710132111274_BranchUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710132138274_BranchImages.resx">
+      <DependentUpon>201710132138274_BranchImages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

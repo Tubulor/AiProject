@@ -101,5 +101,10 @@ namespace FinalProject.Models
         public string Street { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
-    }
+		[Required]
+		public bool Saturday { get; set; }
+		[Required]
+		public int BranchNumber { get; set; }
+		public String Image { get; set; }
+	}
 }
