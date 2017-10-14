@@ -98,6 +98,10 @@ p.price {
 	font-weight: bold;
 }
 
+#map {
+	height: 100px;
+	width: 50%;
+}
 
 
 /* Tell the browser to render HTML 5 elements as block */

@@ -9,28 +9,41 @@
 <link rel="stylesheet" href="~/Content/IstoreCSS.css" type="text/css" media="screen" />
 
 
-		<form action="/action_page.php">
+<h3>Filter products by:</h3>
+<form asp-controller="Products" asp-action="Index" method="get">
+	<p>
+		Brand: <input list="brands" name="Brand">
+		<datalist id="brands">
+			<option value="LG">
+			<option value="Apple">
+			<option value="Samsung">
+			<option value="Toshiba">
+			<option value="Fujicom">
+		</datalist>
+	</p>
+	<p>
+		Inches: <input list="inches" name="Inches">
+		<datalist id="inches">
+			<option value="20">
+			<option value="25">
+			<option value="30">
+			<option value="35">
+			<option value="40">
+		</datalist>
+	</p>
+	<p>
+		Resolution: <input list="resolution" name="Resolution">
+		<datalist id="resolution">
+			<option value="720 HD">
+			<option value="720 Full HD">
+			<option value="1080 HD">
+			<option value="1080 Full HD">
+			<option value="4K">
+		</datalist>
+	</p>
+	<input type="submit" value="Filter" />
+</form>
 
-			<h3>Product serach :</h3>
-
-			<p> ignore ....
-				Date:<input type="date" name="date">&nbsp;
-				to:&nbsp;<input type="date" name="date">
-				<br>
-				Minimum words:&nbsp; <input type="range" name="minWords" min="1" max="10">
-				<br>
-				Author:&nbsp;<input type="text" name="name">
-				<br>
-				E-mail:&nbsp;<input type="email" name="email">
-				<br>
-				Words:&nbsp;<input type="text" name="words">
-			</p>
-
-			<p>
-				<input type="submit" value="Filter">
-			</p>
-
-		</form>
 
 
 	@Html.Partial("~/Views/Buys/MostPopular.cshtml");

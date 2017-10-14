@@ -19,9 +19,25 @@ namespace FinalProject.Controllers
         {
             return View(db.Branches.ToList());
         }
-		public PartialViewResult BranchSearch(String search)
+		public PartialViewResult BranchSearch(String branchname, String country)
 		{
-			return PartialView("BranchSearch",db.Branches.Where(x => x.BranchName == search).ToList());
+
+			List<Branches> model = (from p in db.Branches
+								   select p).ToList();
+
+			/*if(branchname.Equals("NULL"))
+			{
+				model = model.Where(x => x.BranchName.Equals(branchname)).ToList();
+			}*/
+				//model = model.Where(x => x.Country.Equals(country)).ToList();
+			
+			/*if (!String.IsNullOrEmpty(resolution))
+			{
+				products = products.Where(s => s.Resolution.Equals(resolution));
+			}
+			*/
+			
+			return PartialView("BranchSearch",model);
 		}
 
 		// GET: Branches/Details/5
