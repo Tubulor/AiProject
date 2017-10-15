@@ -270,13 +270,10 @@
     <Content Include="Content\images\bannerapple.jpg" />
     <Content Include="Content\images\electronicbanner.jpg" />
     <Content Include="Content\IstoreCSS.css" />
-    <Content Include="Content\javascript\custom.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -284,11 +281,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -340,7 +339,6 @@
     <Content Include="Views\Buys\Details.cshtml" />
     <Content Include="Views\Buys\Edit.cshtml" />
     <Content Include="Views\Buys\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Buys\CreateBuy.cshtml" />
     <Content Include="Views\Buys\Statistics.cshtml" />
     <Content Include="Views\Buys\ProductBuys.cshtml" />
@@ -351,10 +349,12 @@
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
     <Content Include="Views\Branches\BranchSearch.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\csv\" />
+    <Folder Include="Content\javascript\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
