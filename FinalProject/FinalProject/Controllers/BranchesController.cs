@@ -40,13 +40,7 @@ namespace FinalProject.Controllers
 			{
 				model = model.Where(x => x.Saturday.Equals(false));
 			}
-			//
-
-			/*if (!String.IsNullOrEmpty(resolution))
-			{
-				products = products.Where(s => s.Resolution.Equals(resolution));
-			}
-			*/
+			
 			var result = model.ToList();
 			return PartialView("BranchSearch",result);
 		}
