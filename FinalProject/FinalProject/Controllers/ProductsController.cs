@@ -20,40 +20,29 @@ namespace FinalProject.Controllers
             return View(db.Products.ToList());
         }
 
-		[HttpPost]
-		public string Index(string brand, string inches, string resolution, bool notUsed)
+		
+		public PartialViewResult ProductSearch(String ProductName, String Brand, String Inches)
 		{
-			return "From [HttpPost]Index: filter on " + resolution;
-		}
 
-	/*	[HttpPost]
-		public string Index(string brand, string inches, string resolution, bool notUsed)
-		{
-			return "From [HttpPost]Index: filter on " + resolution;
-		}
+			IQueryable<Products> model = db.Products;
 
-		// GET: Products
-		public async Task<ActionResult> Index(string brand, string inches, string resolution)
-		{
-			var products = from p in db.Products
-						   select p;
-
-			if (!String.IsNullOrEmpty(brand))
+			if (!String.IsNullOrEmpty(ProductName))
 			{
-				products = products.Where(s => s.Brand.Equals(brand));
+				model = model.Where(x => x.ProductName.Contains(ProductName));
 			}
-			if (!String.IsNullOrEmpty(inches))
+			if (!String.IsNullOrEmpty(Brand))
 			{
-				products = products.Where(s => s.Inches.Equals(brand));
+				model = model.Where(x => x.Brand.Contains(Brand));
 			}
-			if (!String.IsNullOrEmpty(resolution))
+			if (!String.IsNullOrEmpty(Inches))
 			{
-				products = products.Where(s => s.Resolution.Equals(resolution));
+				model = model.Where(x => x.Inches.Contains(Inches));
 			}
 
-			return View(await products.ToListAsync());
+			var result = model.ToList();
+			return PartialView("ProductSearch", result);
 		}
-*/
+
 		// GET: Products/Details/5
 		public ActionResult Details(int? id)
         {

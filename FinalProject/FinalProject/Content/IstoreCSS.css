@@ -98,10 +98,11 @@ p.price {
 	font-weight: bold;
 }
 
-#map {
-	height: 100px;
-	width: 50%;
-}
+/*#map {
+	height: 500px;
+	width: 500px;
+	
+}*/
 
 
 /* Tell the browser to render HTML 5 elements as block */
@@ -259,8 +260,7 @@ nav {
 aside {
 	float: right;
 	display: table-cell;
-	
-	background: url("~/Content/images/sidebar_background.png") top left;
+	/*background: url("~/Content/images/sidebar_background.png") top left;*/
 }
 
 
@@ -434,18 +434,19 @@ footer {
 		display: table;
 		margin: 0 auto;
 		padding: 30px 0;
-		width: 940px;
+		width: 1200px;
 		color: #777;
 	}
 
 		footer div section {
 			display: table-cell;
-			width: 300px;
+			width: 250px;
 		}
 
 		footer div #about, footer div #blogroll {
 		
 		}
+		
 
 	footer h3 {
 		color: #FFF;
