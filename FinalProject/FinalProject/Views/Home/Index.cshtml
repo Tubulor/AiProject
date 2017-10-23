@@ -1,58 +1,61 @@
 ﻿@model FinalProject.Models.ViewModle
-
 @{
 	ViewBag.Title = "Home Page";
 }
+
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 <link rel="stylesheet" href="~/Content/IstoreCSS.css" type="text/css" media="screen" />
 
+<h3>Search:</h3>
 
-<h3>Filter products by:</h3>
-<form asp-controller="Products" asp-action="Index" method="get">
-	<p>
-		Brand: <input list="brands" name="Brand">
-		<datalist id="brands">
-			<option value="LG">
-			<option value="Apple">
-			<option value="Samsung">
-			<option value="Toshiba">
-			<option value="Fujicom">
-		</datalist>
-	</p>
-	<p>
-		Inches: <input list="inches" name="Inches">
-		<datalist id="inches">
-			<option value="20">
-			<option value="25">
-			<option value="30">
-			<option value="35">
-			<option value="40">
-		</datalist>
-	</p>
-	<p>
-		Resolution: <input list="resolution" name="Resolution">
-		<datalist id="resolution">
-			<option value="720 HD">
-			<option value="720 Full HD">
-			<option value="1080 HD">
-			<option value="1080 Full HD">
-			<option value="4K">
-		</datalist>
-	</p>
-	<input type="submit" value="Filter" />
-</form>
+@using (Ajax.BeginForm("ProductSearch", "Products",
+					new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "searchResults" }))
+{
+		<dl class="dl-horizontal">
 
+		<dt>
+			Product name :
+		</dt>
 
+		<dd>
+			@Html.TextBox("ProductName", null, new { id = "ProductName" })
+		</dd>
+		
+		<dt>
+			Brand :
+		</dt>
 
-	@Html.Partial("~/Views/Buys/MostPopular.cshtml");
+		<dd>
+			@Html.TextBox("Brand", null, new { id = "Brand" })
+		</dd>
 
-<section class="products">
+		<dt>
+		Inches :
+	</dt>
 
+	<dd>
+		@Html.TextBox("Inches", null, new { id = "Inches" })
+	</dd>
+	
+	
+	</dl>
+
+	<input type="submit" value="Search" class="btn btn-primary" />
+		<hr>
+}
+
+@Html.Partial("~/Views/Buys/MostPopular.cshtml");
+
+<div id="searchResults">
+
+	@*@Html.Partial("~/Views/Products/ProductSearch.cshtml");*@
+
+	<section class="products">
 
 		@foreach (var item in Model.Product)
-		{
+			{
 		<!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
 
 			<div class="product-card">
@@ -73,13 +76,20 @@
 				</div>
 				<p>
 					<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
-				</p>
+					</p>
 			</div>
 			<hr>
-		}
+			}
 		<!-- more products -->
 
-</section>
+	</section>
+
+
+</div>
+
+	
+
+	
 
 
 

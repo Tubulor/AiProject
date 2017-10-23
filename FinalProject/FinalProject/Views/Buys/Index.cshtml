@@ -4,11 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-@if (!User.Identity.Name.Equals("admin@gmail.com"))
-{
-	<h2>UnAuthorize Access.</h2>
-}
-else
+@if (User.Identity.Name.Equals("admin@gmail.com"))
 {
 
 <h2>Index</h2>
@@ -57,4 +53,8 @@ else
 }
 
 </table>
+}
+else
+{
+
 }

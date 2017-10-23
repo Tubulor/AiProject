@@ -3,8 +3,8 @@
 @{
 	ViewBag.Title = "Index";
 }
-
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 @if (User.Identity.Name.Equals("admin@gmail.com"))
 {
 
@@ -79,8 +79,7 @@
 
 	</table>
 }
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
 @using (Ajax.BeginForm("BranchSearch", "Branches",
 		new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "searchResults" }))
 {
@@ -110,7 +109,7 @@
 			@Html.CheckBox("saturday")
 		</dd>
 	</dl>
-		 
+
 		<input type="submit" value="Search" class="btn btn-primary" />
 		<hr>
 }
@@ -118,29 +117,57 @@
 			@Html.Partial("~/Views/Branches/BranchSearch.cshtml");
 		</div>
 
-		<div class="apis">
-			<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share on FB</a></div>
-			<h3>Google Maps Demo</h3>
-			<div id="map"></div>
-			<script>
-				function initMap() {
-					
-					var uluru = { lat: -25.363, lng: 131.044 };
-					var map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 4,
-						center: uluru
-					});
-					var marker = new google.maps.Marker({
-						position: uluru,
-						map: map
-					});
-				}
-			</script>
-			<script async defer
-					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp4Dy86exFzK18bAlSuX50mTliFahUINU&callback=initMap">
-			</script>
-		</div>
-		<html>
+			
+			<h2>Google Maps - Branches location</h2>
+			<div id="map" style="width: 700px; height: 500px;"></div>
+			
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wNrayut12HbtkTXZ-TN4dS1tDlywsLE&callback=initMap"
+		async defer></script>
+	<script>
+
+		function initMap() {
+			var geocoder;
+			var map;
+			geocoder = new google.maps.Geocoder();
+			var uluru = { lat: 31.974 ,lng: 34.791 };
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 10,
+				center: uluru
+			});
+				
+		 var branches = @Html.Raw(Json.Encode(Model));
+   		 for (var i = 0; i < branches.length; i++) {
+					 var branch = branches[i];
+					 var address = branch.City + branch.Street +' '+ branch.HouseNumber;		
+
+				geocoder.geocode({ address: address }, function (results, status) {
+
+					if (status == google.maps.GeocoderStatus.OK) {
+
+						var myResult = results[0].geometry.location; // reference LatLng value
+
+						var marker = new google.maps.Marker({
+							position: myResult,
+							map: map
+						});
+
+
+
+					}
+				});
+				 }
+
+		}
+		
+	</script>
+	
+		
+	
+
+
+
+	<html>
 		<head>
 			<title>Your Website Title</title>
 			<!-- You can use Open Graph tags to customize link previews.
