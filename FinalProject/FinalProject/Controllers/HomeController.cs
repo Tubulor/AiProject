@@ -17,35 +17,40 @@ namespace FinalProject.Controllers
 			viewmodel.Buy = db.Buys.ToList();
 			return View(viewmodel);
 		}
-
-	/*	[HttpPost]
-		public string Index(string brand, string inches, string resolution, bool notUsed)
+		public ActionResult Facebook()
 		{
-			return "From [HttpPost]Index: filter on " + resolution;
+			return View();
 		}
 
-		// GET: Products
-		public async Task<ActionResult> Index(string brand, string inches, string resolution)
-		{
-			var products = from p in db.Products
-						   select p;
 
-			if (!String.IsNullOrEmpty(brand))
+		/*	[HttpPost]
+			public string Index(string brand, string inches, string resolution, bool notUsed)
 			{
-				products = products.Where(s => s.Brand.Equals(brand));
-			}
-			if (!String.IsNullOrEmpty(inches))
-			{
-				products = products.Where(s => s.Inches.Equals(brand));
-			}
-			if (!String.IsNullOrEmpty(resolution))
-			{
-				products = products.Where(s => s.Resolution.Equals(resolution));
+				return "From [HttpPost]Index: filter on " + resolution;
 			}
 
-			return View(await products.ToListAsync());
-		}
-		*/
+			// GET: Products
+			public async Task<ActionResult> Index(string brand, string inches, string resolution)
+			{
+				var products = from p in db.Products
+							   select p;
+
+				if (!String.IsNullOrEmpty(brand))
+				{
+					products = products.Where(s => s.Brand.Equals(brand));
+				}
+				if (!String.IsNullOrEmpty(inches))
+				{
+					products = products.Where(s => s.Inches.Equals(brand));
+				}
+				if (!String.IsNullOrEmpty(resolution))
+				{
+					products = products.Where(s => s.Resolution.Equals(resolution));
+				}
+
+				return View(await products.ToListAsync());
+			}
+			*/
 
 		public ActionResult About()
         {

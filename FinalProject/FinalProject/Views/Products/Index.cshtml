@@ -9,9 +9,23 @@
 
 <h2>Products</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+
+
+using (Html.BeginForm())
+{
+	<p>
+		<b>Filter :</b><br />
+		<b>Product Name -</b> @Html.TextBox("SearchString")<br />
+		<b>	Brand -</b> @Html.TextBox("Brand")<br />
+		<b>	Inches - </b>@Html.TextBox("Inches")<br />
+
+					<input type="submit" value="Search" />
 </p>
+}
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
+
 <table class="table">
     <tr>
         <th>
@@ -90,7 +104,7 @@
 
 </table>
 	}
-}
+
 
 <section class="products">
 

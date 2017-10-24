@@ -98,11 +98,15 @@ p.price {
 	font-weight: bold;
 }
 
-/*#map {
-	height: 500px;
-	width: 500px;
-	
-}*/
+.facebook {
+	padding-top: 50px;
+}
+.fb-page {
+	display: block;
+}
+.fb-share-button {
+	padding-bottom: 20px;
+}
 
 
 /* Tell the browser to render HTML 5 elements as block */

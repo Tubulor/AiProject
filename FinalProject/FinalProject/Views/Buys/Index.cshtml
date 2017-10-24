@@ -7,7 +7,18 @@
 @if (User.Identity.Name.Equals("admin@gmail.com"))
 {
 
-<h2>Index</h2>
+<h2>Buys</h2>
+
+	using (Html.BeginForm())
+	{
+		<p>
+			<b>Filter :</b><br />
+			<b>Product Name -</b> @Html.TextBox("SearchString")<br />
+			<b>Price -</b> @Html.TextBox("Price")<br />
+			
+			<input type="submit" value="Search" />
+		</p>
+	}
 
 <p>
     @Html.ActionLink("Create New", "Create")

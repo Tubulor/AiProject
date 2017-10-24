@@ -15,9 +15,29 @@ namespace FinalProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string searchString,string Brand ,string Inches)
         {
-            return View(db.Products.ToList());
+			var products = from p in db.Products
+						   select p;
+
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				products = products.Where(s => s.ProductName.Contains(searchString));
+									  
+			}
+			if (!String.IsNullOrEmpty(Brand))
+			{
+				products = products.Where(s => s.Brand.Contains(Brand));
+
+			}
+			if (!String.IsNullOrEmpty(Inches))
+			{
+				products = products.Where(s => s.Inches.Equals(Inches));
+
+			}
+
+
+			return View(products.ToList());
         }
 
 		

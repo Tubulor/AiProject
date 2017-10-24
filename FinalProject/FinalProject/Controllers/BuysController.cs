@@ -17,9 +17,22 @@ namespace FinalProject.Controllers
 		private ApplicationDbContext db = new ApplicationDbContext();
 
 		// GET: Buys
-		public ActionResult Index()
+		public ActionResult Index(string searchString, string Price)
 		{
 			var buys = db.Buys.Include(b => b.Products);
+
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				buys = buys.Where(s => s.Products.ProductName.Contains(searchString));
+
+			}
+			if (!String.IsNullOrEmpty(Price))
+			{
+				int price = Int32.Parse(Price);
+				buys = buys.Where(s => s.PriceBought==price);
+
+			}
+			
 			return View(buys.ToList());
 		}
 		public ActionResult Statistics()
