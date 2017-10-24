@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinalProject.Models;
-using System.Threading.Tasks;
 
 namespace FinalProject.Controllers
 {
@@ -15,39 +14,30 @@ namespace FinalProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
-        //// GET: Products
-        //public ActionResult Index()
-        //{
-        //    return View(db.Products.ToList());
-        //}
-
-        [HttpPost]
-        public string Index(string brand, string inches, string resolution, bool notUsed)
-        {
-            return "From [HttpPost]Index: filter on " + resolution;
-        }
-
         // GET: Products
-        public async Task<ActionResult> Index(string brand, string inches, string resolution)
+        public ActionResult Index(string searchString,string Brand ,string Inches)
         {
-            var products = from p in db.Products
-                           select p;
+			var products = from p in db.Products
+						   select p;
 
-            if (!String.IsNullOrEmpty(brand))
-            {
-                products = products.Where(s => s.Brand.Equals(brand));
-            }
-            if (!String.IsNullOrEmpty(inches))
-            {
-                products = products.Where(s => s.Inches.Equals(brand));
-            }
-            if (!String.IsNullOrEmpty(resolution))
-            {
-                products = products.Where(s => s.Inches.Equals(resolution));
-            }
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				products = products.Where(s => s.ProductName.Contains(searchString));
+									  
+			}
+			if (!String.IsNullOrEmpty(Brand))
+			{
+				products = products.Where(s => s.Brand.Contains(Brand));
 
-                return View(await products.ToListAsync());
+			}
+			if (!String.IsNullOrEmpty(Inches))
+			{
+				products = products.Where(s => s.Inches.Equals(Inches));
+
+			}
+
+
+			return View(products.ToList());
         }
 
 		

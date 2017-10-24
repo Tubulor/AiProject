@@ -46,16 +46,15 @@
                     <li class="statistics">@Html.ActionLink("Statistics", "statistics", "Buys")</li>
 					<li class="statistics">@Html.ActionLink("Branches", "Index", "Branches")</li>
                     <li>
-                        <a href="#">
+                        <a href="@Url.Action("Facebook", "Home")">
                             <div id="transDemo2">
                                 <div class="hover">
-                                    <img src=http://www.ashlylorenzana.com/wp-content/uploads/2013/12/12065637851779660844SRD_RSS_Logo.svg_.hi_.png width="22" height="22">
+                                    <img src=http://siteassets.pagecloud.com/alineinthewater/images/Facebook-icon-ID-5ccfe897-a855-4b95-f8dd-291fe4fc1173.png width="30" height="30">
                                 </div>
                             </div>
                         </a>
                     </li>
-                    <li class="subscribe"><a href="#">Subscribe via. RSS</a></li>
-                </ul>
+                  </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -185,13 +184,12 @@
 					}
 				</script>
 			</section>
-
-
+			
 
 		</aside>
     </div>
-    <div id="mainContent">
-        <footer>
+	<div id="mainContent">
+		<footer>
 			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
 			<div id="content">
 				<!-- Footer -->
@@ -214,12 +212,9 @@
 						<li><a href="#">Consectetur adipisicing elit, sed do eiusmod</a></li>
 					</ul>
 				</section>
-				@*<section>
-			<div class="fb-share-button" data-href="https://www.facebook.com/AIOEStore/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2FAIOEStore%2F&amp;src=sdkpreparse">Share</a></div>
-			</section>*@
-			</div>	
-        </footer>
-    
+		</div>
+		</footer>
+	</div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
