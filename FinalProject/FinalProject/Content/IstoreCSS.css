@@ -7,7 +7,7 @@
 	text-align: center;
 	-webkit-transition: all 2s ease-in-out;
 	-moz-transition: all 2s ease-in-out;
-	-ms-transition: all 2s ease-in-out;
+	/*-ms-transition: all 2s ease-in-out;*/
 	transition: all 2s ease-in-out;
 }
 
@@ -64,7 +64,6 @@ hr {
 	margin: 0;
 	padding: 0;
 }
-
 .products {
 	display: flex;
 	flex-wrap: wrap;
@@ -79,7 +78,6 @@ hr {
 	flex-basis: 16%;
 	display: flex; /* so child elements can use flexbox stuff too! */
 }
-
 .product-card {
 		flex: 1 16%;
 }
@@ -92,10 +90,7 @@ hr {
 .product-info {
 	margin-left: 15px;
 	margin-top: auto;
-}
-p.price {
-	color : green;
-	font-weight: bold;
+	color: forestgreen;
 }
 
 .facebook {
@@ -141,6 +136,7 @@ h3 {
 	line-height: 22px;
 	padding: 11px 0;
 }
+
 h2 {
 	text-shadow: 3px 3px #DDDDDD;
 }
@@ -255,14 +251,14 @@ nav {
 }
 
 #mainContent {
-	float: right;
+	/*float: right;*/
 	display: table-cell;
 	width: 76.5%;
 	padding-left: 22px;
 }
 
 aside {
-	float: right;
+	/*float: right;*/
 	display: table-cell;
 	/*background: url("~/Content/images/sidebar_background.png") top left;*/
 }
@@ -336,7 +332,7 @@ aside {
 
 /*------------------------------
 =COMMENTS
-------------------------------*/
+------------------------------
 
 #comments {
 	margin-top: 21px;
@@ -380,15 +376,15 @@ aside {
 
 
 
-
+	*/
 /*------------------------------
 =COMMENT FORM
 ------------------------------*/
-form {
-	/*margin-top: 21px;
+/*form {
+	margin-top: 21px;
 	padding-top: 22px;
-	border-top: 1px solid #d7d7d7;*/
-}
+	border-top: 1px solid #d7d7d7;
+}*/
 
 	form p {
 		display: table;
@@ -447,9 +443,9 @@ footer {
 			width: 250px;
 		}
 
-		footer div #about, footer div #blogroll {
+	/*footer div #about, footer div #blogroll {
 		
-		}
+		}*/
 		
 
 	footer h3 {
