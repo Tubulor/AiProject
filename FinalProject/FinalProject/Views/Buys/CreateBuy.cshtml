@@ -14,9 +14,7 @@
     <div class="form-horizontal">
         <hr />
 
-        <dl class="dl-horizontal">
-
-            <div class="form-group">
+                    <div class="form-group">
                 @Html.LabelFor(model => model.Buys.ProductsID, "PostID", htmlAttributes: new { @class = "hidden" })
                 @Html.HiddenFor(model => model.Buys.ProductsID, new { Value = @Model.Products.ID })
                 <div class="col-md-10">
@@ -42,7 +40,7 @@
                 </div>
             </div>
 
-        </dl>
+        
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -51,11 +49,20 @@
         </div>
     </div>
 
+	
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Back to List", "Index")
 </div>
+
+<h2>You might be intersted in ... </h2>
+
+@{
+		Html.RenderAction("RelatedProduct" , new { id = Model.Products.ID } );
+}
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

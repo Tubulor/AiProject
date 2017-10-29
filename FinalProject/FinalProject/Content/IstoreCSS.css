@@ -33,6 +33,7 @@ hr {
 	border-top: 1px solid #aaaaaa;
 	border-bottom: 1px solid #ffffff;
 }
+
 .button {
 	background-color: #4CAF50; /* Green */
 	border: none;
@@ -64,41 +65,53 @@ hr {
 	margin: 0;
 	padding: 0;
 }
+
 .products {
 	display: flex;
 	flex-wrap: wrap;
 }
+
 .Popular {
 	border: 2px solid red;
 	border-radius: 8px;
 }
+
 .product-card {
 	padding: 2%;
 	flex-grow: 1;
 	flex-basis: 16%;
 	display: flex; /* so child elements can use flexbox stuff too! */
 }
+
 .product-card {
-		flex: 1 16%;
+	flex: 1 16%;
 }
+
 .product-image img {
 	padding-right: 15px;
 	width: 200px;
 	height: 150px;
 	-webkit-border-radius: 44px;
 }
+
 .product-info {
 	margin-left: 15px;
 	margin-top: auto;
-	color: forestgreen;
 }
+
+	.product-info p.price {
+		color: green;
+		font-weight: bold;
+	}
 
 .facebook {
 	padding-top: 50px;
 }
+
 .fb-page {
 	display: block;
 }
+
 .fb-share-button {
 	padding-bottom: 20px;
 }
@@ -140,12 +153,13 @@ h3 {
 h2 {
 	text-shadow: 3px 3px #DDDDDD;
 }
+
 h7 {
 	font-size: 28px;
 	line-height: 44px;
 	padding: 0px 0;
-	color :red;
-	font-weight:bold; 
+	color: red;
+	font-weight: bold;
 }
 
 p {
@@ -163,7 +177,7 @@ nav {
 	left: 0;
 	width: 100%;
 	background: black; /* For browsers that do not support gradients */
-	}
+}
 
 	nav ul {
 		margin: 0 auto;
@@ -233,7 +247,6 @@ nav {
 	}
 
 	#intro img {
-		
 		max-width: 100%;
 		height: auto;
 		width: auto\9; /* ie8 */
@@ -251,14 +264,14 @@ nav {
 }
 
 #mainContent {
-	/*float: right;*/
+	float: right;
 	display: table-cell;
 	width: 76.5%;
 	padding-left: 22px;
 }
 
 aside {
-	/*float: right;*/
+	float: right;
 	display: table-cell;
 	/*background: url("~/Content/images/sidebar_background.png") top left;*/
 }
@@ -332,7 +345,7 @@ aside {
 
 /*------------------------------
 =COMMENTS
-------------------------------
+------------------------------*/
 
 #comments {
 	margin-top: 21px;
@@ -376,15 +389,15 @@ aside {
 
 
 
-	*/
+
 /*------------------------------
 =COMMENT FORM
 ------------------------------*/
-/*form {
-	margin-top: 21px;
+form {
+	/*margin-top: 21px;
 	padding-top: 22px;
-	border-top: 1px solid #d7d7d7;
-}*/
+	border-top: 1px solid #d7d7d7;*/
+}
 
 	form p {
 		display: table;
@@ -443,10 +456,9 @@ footer {
 			width: 250px;
 		}
 
-	/*footer div #about, footer div #blogroll {
-		
-		}*/
-		
+		footer div #about, footer div #blogroll {
+		}
+
 
 	footer h3 {
 		color: #FFF;

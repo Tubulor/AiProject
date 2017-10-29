@@ -10,9 +10,9 @@
 <h3>Search:</h3>
 
 @using (Ajax.BeginForm("ProductSearch", "Products",
-					new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "searchResults" }))
+								new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "searchResults" }))
 {
-		<dl class="dl-horizontal">
+	<dl class="dl-horizontal">
 
 		<dt>
 			Product name :
@@ -21,7 +21,7 @@
 		<dd>
 			@Html.TextBox("ProductName", null, new { id = "ProductName" })
 		</dd>
-		
+
 		<dt>
 			Brand :
 		</dt>
@@ -31,18 +31,18 @@
 		</dd>
 
 		<dt>
-		Inches :
-	</dt>
+			Inches :
+		</dt>
 
-	<dd>
-		@Html.TextBox("Inches", null, new { id = "Inches" })
-	</dd>
-	
-	
+		<dd>
+			@Html.TextBox("Inches", null, new { id = "Inches" })
+		</dd>
+
+
 	</dl>
 
 	<input type="submit" value="Search" class="btn btn-primary" />
-		<hr>
+	<hr>
 }
 
 @Html.Partial("~/Views/Buys/MostPopular.cshtml");
@@ -74,7 +74,7 @@
 				</div>
 				<p>
 					<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
-					</p>
+				</p>
 			</div>
 			<hr>
 			}
@@ -84,14 +84,3 @@
 
 
 </div>
-
-	
-
-	
-
-
-
-
-
-
-

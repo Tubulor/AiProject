@@ -1,95 +1,96 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+	<meta charset="utf-8" />
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="~/Content/IstoreCSS.css" type="text/css" media="screen" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AOI Store</title>
-   
-   	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	<link rel="stylesheet" href="~/Content/IstoreCSS.css" type="text/css" media="screen" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AOI Store</title>
 
+	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 	
+
 	@Scripts.Render("~/bundles/jqueryval")
-	
+
 </head>
 <body>
-	
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1928888677372718';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="home">@Html.ActionLink("Home page", "Index", "Home")</li>
-                    <li class="manage">@Html.ActionLink("Manage", "Index", "Manage")</li>
-                    <li class="buys"> @Html.ActionLink("Buy", "Index", "Buys")</li>
-                    <li class="products">@Html.ActionLink("Products", "Index", "Products")</li>
-                    <li class="statistics">@Html.ActionLink("Statistics", "statistics", "Buys")</li>
-					<li class="statistics">@Html.ActionLink("Branches", "Index", "Branches")</li>
-                    <li>
-                        <a href="@Url.Action("Facebook", "Home")">
-                            <div id="transDemo2">
-                                <div class="hover">
-                                    <img src=http://siteassets.pagecloud.com/alineinthewater/images/Facebook-icon-ID-5ccfe897-a855-4b95-f8dd-291fe4fc1173.png width="30" height="30">
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                  </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
 
-    <section id="intro">
-        <!-- Introduction -->
-        <img src="~/Content/images/electronicbanner.jpg" />
-    </section>
-    <link rel="stylesheet" href="~/Content/IstoreCSS.css" type="text/css" media="screen" />
-    <article id="mainContent">
-        <section>
-            @RenderBody()
-        </section>
-    </article>
-    <div id="content">
-        <aside>
-            <section>
-                <header>
-                    <h3>Categories</h3>
-                </header>
-                <ul>
-                    <li><a href="#">Lorem ipsum dolor</a></li>
-                    <li><a href="#">Sit amet consectetur</a></li>
-                    <li><a href="#">Adipisicing elit sed</a></li>
-                </ul>
-            </section>
-            <section>
-                <header>
-                    <h3>Archives</h3>
-                </header>
-                <ul>
-                    <li><a href="#">December 2008</a></li>
-                    <li><a href="#">January 2009</a></li>
-                    <li><a href="#">February 2009</a></li>
-                    <li><a href="#">March 2009</a></li>
-                </ul>
-            </section>
+	<div id="fb-root"></div>
+	<script>
+(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1928888677372718';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="home">@Html.ActionLink("Home page", "Index", "Home")</li>
+					<li class="manage">@Html.ActionLink("Manage", "Index", "Manage")</li>
+					<li class="buys"> @Html.ActionLink("Buy", "Index", "Buys")</li>
+					<li class="products">@Html.ActionLink("Products", "Index", "Products")</li>
+					<li class="statistics">@Html.ActionLink("Statistics", "statistics", "Buys")</li>
+					<li class="statistics">@Html.ActionLink("Branches", "Index", "Branches")</li>
+					<li>
+						<a href="@Url.Action("Facebook", "Home")">
+							<div id="transDemo2">
+								<div class="hover">
+									<img src=http://siteassets.pagecloud.com/alineinthewater/images/Facebook-icon-ID-5ccfe897-a855-4b95-f8dd-291fe4fc1173.png width="30" height="30">
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+				@Html.Partial("_LoginPartial")
+			</div>
+		</div>
+	</div>
+
+	<section id="intro">
+		<!-- Introduction -->
+		<img src="~/Content/images/electronicbanner.jpg" />
+	</section>
+	
+	<article id="mainContent">
+		<section>
+			@RenderBody()
+		</section>
+	</article>
+	<div id="content">
+		<aside>
+			<section>
+				<header>
+					<h3>Categories</h3>
+				</header>
+				<ul>
+					<li><a href="#">Lorem ipsum dolor</a></li>
+					<li><a href="#">Sit amet consectetur</a></li>
+					<li><a href="#">Adipisicing elit sed</a></li>
+				</ul>
+			</section>
+			<section>
+				<header>
+					<h3>Archives</h3>
+				</header>
+				<ul>
+					<li><a href="#">December 2008</a></li>
+					<li><a href="#">January 2009</a></li>
+					<li><a href="#">February 2009</a></li>
+					<li><a href="#">March 2009</a></li>
+				</ul>
+			</section>
 			<section>
 				<video width="150" height="100" controls>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
@@ -97,37 +98,37 @@
 			</section>
 			<section>
 
-				<canvas id="myCanvas" width="150" height="150" ></canvas>
+				<canvas id="myCanvas" width="150" height="150"></canvas>
 
-					<script>
-						var c = document.getElementById("myCanvas");
-						var ctx = c.getContext("2d");
-						ctx.moveTo(5, 140);
-						ctx.lineTo(20, 20);
-						ctx.lineTo(35, 140);
-						ctx.moveTo(11, 75);
-						ctx.lineTo(28, 75);
-						ctx.lineWidth = 8;
-						ctx.stroke();
-						ctx.beginPath();
-						ctx.arc(75, 100, 30, 0, 2 * Math.PI);
-						ctx.fillStyle = "orange";
-						ctx.fill();
-						ctx.stroke();
-						ctx.moveTo(110, 135);
-						ctx.lineTo(140, 135);
-						ctx.moveTo(125, 135);
-						ctx.lineTo(125, 10);
-						ctx.moveTo(110, 10);
-						ctx.lineTo(140, 10);
-						ctx.stroke();
+				<script>
+					var c = document.getElementById("myCanvas");
+					var ctx = c.getContext("2d");
+					ctx.moveTo(5, 140);
+					ctx.lineTo(20, 20);
+					ctx.lineTo(35, 140);
+					ctx.moveTo(11, 75);
+					ctx.lineTo(28, 75);
+					ctx.lineWidth = 8;
+					ctx.stroke();
+					ctx.beginPath();
+					ctx.arc(75, 100, 30, 0, 2 * Math.PI);
+					ctx.fillStyle = "orange";
+					ctx.fill();
+					ctx.stroke();
+					ctx.moveTo(110, 135);
+					ctx.lineTo(140, 135);
+					ctx.moveTo(125, 135);
+					ctx.lineTo(125, 10);
+					ctx.moveTo(110, 10);
+					ctx.lineTo(140, 10);
+					ctx.stroke();
 
-					</script>
-</section>
-			
+				</script>
+			</section>
+
 
 		</aside>
-    </div>
+	</div>
 	<div id="mainContent">
 		<footer>
 			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -152,11 +153,11 @@
 						<li><a href="#">Consectetur adipisicing elit, sed do eiusmod</a></li>
 					</ul>
 				</section>
-		</div>
+			</div>
 		</footer>
 	</div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
 </body>
 </html>

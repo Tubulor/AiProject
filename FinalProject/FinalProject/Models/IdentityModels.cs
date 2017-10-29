@@ -67,9 +67,11 @@ namespace FinalProject.Models
 		[Required]
 		[Url(ErrorMessage = "Please enter vaild url .")]
 		public string Image { get; set; }
-        
+		[Required]
+		[DataType(DataType.Text, ErrorMessage = "This field can not be empty.")]
+		public string Panel { get; set; }
 
-    }
+	}
 
     public class Buys
     {
