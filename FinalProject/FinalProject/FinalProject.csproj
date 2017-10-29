@@ -272,6 +272,26 @@
     <Compile Include="Migrations\201710132138274_BranchImages.Designer.cs">
       <DependentUpon>201710132138274_BranchImages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710282028175_ProductsModelValidation2.cs" />
+    <Compile Include="Migrations\201710282028175_ProductsModelValidation2.Designer.cs">
+      <DependentUpon>201710282028175_ProductsModelValidation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710282037136_ProductsModelValidation3.cs" />
+    <Compile Include="Migrations\201710282037136_ProductsModelValidation3.Designer.cs">
+      <DependentUpon>201710282037136_ProductsModelValidation3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710282203441_AllModelsValidation.cs" />
+    <Compile Include="Migrations\201710282203441_AllModelsValidation.Designer.cs">
+      <DependentUpon>201710282203441_AllModelsValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710282249379_AllModelsValidation2.cs" />
+    <Compile Include="Migrations\201710282249379_AllModelsValidation2.Designer.cs">
+      <DependentUpon>201710282249379_AllModelsValidation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710290025356_AllModelsValidation3.cs" />
+    <Compile Include="Migrations\201710290025356_AllModelsValidation3.Designer.cs">
+      <DependentUpon>201710290025356_AllModelsValidation3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -299,25 +319,25 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="WebService.asmx" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="WebService.asmx" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -372,9 +392,9 @@
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
     <Content Include="Views\Branches\BranchSearch.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Products\ProductSearch.cshtml" />
     <Content Include="Views\Home\Facebook.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -427,6 +447,21 @@
     <EmbeddedResource Include="Migrations\201710132138274_BranchImages.resx">
       <DependentUpon>201710132138274_BranchImages.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710282028175_ProductsModelValidation2.resx">
+      <DependentUpon>201710282028175_ProductsModelValidation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710282037136_ProductsModelValidation3.resx">
+      <DependentUpon>201710282037136_ProductsModelValidation3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710282203441_AllModelsValidation.resx">
+      <DependentUpon>201710282203441_AllModelsValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710282249379_AllModelsValidation2.resx">
+      <DependentUpon>201710282249379_AllModelsValidation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710290025356_AllModelsValidation3.resx">
+      <DependentUpon>201710290025356_AllModelsValidation3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -460,9 +495,9 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
   </Target>
   <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

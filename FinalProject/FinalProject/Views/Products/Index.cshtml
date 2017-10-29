@@ -49,15 +49,8 @@ using (Html.BeginForm())
         <th>
             @Html.DisplayNameFor(model => model.RefreshRate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Video)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Discount)
-        </th>
+        
+       
         <th></th>
     </tr>
 
@@ -85,15 +78,8 @@ using (Html.BeginForm())
         <td>
             @Html.DisplayFor(modelItem => item.RefreshRate)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Video)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discount)
-        </td>
+        
+       
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
             @Html.ActionLink("Details", "Details", new { id = item.ID }) |
@@ -114,7 +100,7 @@ using (Html.BeginForm())
 
 		<div class="product-card">
 			<div class="product-image">
-				<img src="@Html.DisplayFor(modelItem => item.Image)" width="200" height="150">
+				<img src="@Html.DisplayTextFor(modelItem => item.Image)" width="200" height="150">
 			</div>
 			<div class="product-info">
 				<h2>@Html.DisplayFor(model => item.ProductName)</h2>
@@ -124,7 +110,6 @@ using (Html.BeginForm())
 					Inches - @Html.DisplayFor(model => item.Inches)<br>
 					Resolution - @Html.DisplayFor(model => item.Resolution)<br>
 					RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
-					Discount- @Html.DisplayFor(model => item.Discount)<br>
 					<p class="price">Price - @Html.DisplayFor(model => item.Price)</p>
 				</h3>
 			

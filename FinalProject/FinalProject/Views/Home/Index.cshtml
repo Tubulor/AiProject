@@ -60,7 +60,7 @@
 
 			<div class="product-card">
 				<div class="product-image">
-					<img src="@Html.DisplayFor(modelItem => item.Image)" width="200" height="150">
+					<img src="@Html.DisplayTextFor(modelItem => item.Image)" width="200" height="150">
 				</div>
 				<div class="product-info">
 					<h2>@Html.DisplayFor(model => item.ProductName)</h2>
@@ -70,7 +70,6 @@
 						Inches - @Html.DisplayFor(model => item.Inches)<br>
 						Resolution - @Html.DisplayFor(model => item.Resolution)<br>
 						RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
-						Discount- @Html.DisplayFor(model => item.Discount)<br>
 						<p class="price">Price - @Html.DisplayFor(model => item.Price)</p>
 					</h3>
 				</div>
