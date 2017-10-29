@@ -172,7 +172,7 @@ namespace FinalProject.Controllers
 				else
 				{ //outlier
 					Input[i] = new double[] { 20,20 ,20 };
-					output[i] = 1;
+					output[i] = id-1;
 				}
 
 			}

@@ -49,7 +49,9 @@ using (Html.BeginForm())
         <th>
             @Html.DisplayNameFor(model => model.RefreshRate)
         </th>
-        
+		<th>
+			@Html.DisplayNameFor(model => model.Panel)
+		</th>
        
         <th></th>
     </tr>
@@ -78,7 +80,9 @@ using (Html.BeginForm())
         <td>
             @Html.DisplayFor(modelItem => item.RefreshRate)
         </td>
-        
+		<td>
+			@Html.DisplayFor(modelItem => item.Panel)
+		</td>
        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
@@ -110,6 +114,7 @@ using (Html.BeginForm())
 					Inches - @Html.DisplayFor(model => item.Inches)<br>
 					Resolution - @Html.DisplayFor(model => item.Resolution)<br>
 					RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
+					Panel - @Html.DisplayFor(model => item.Panel)<br>
 					Price - @Html.DisplayFor(model => item.Price)
 				</h3>
 			

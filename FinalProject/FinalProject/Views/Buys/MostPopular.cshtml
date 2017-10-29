@@ -41,7 +41,8 @@
 			x.RefreshRate,
 			x.Resolution,
 			x.Brand,
-			x.Description
+			x.Description,
+			x.Panel
 		}).First();
 
 		<!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
@@ -58,6 +59,7 @@
 						Inches - @group.Inches<br>
 						Resolution - @group.Resolution<br>
 						RefreshRate - @group.RefreshRate<br>
+						Panel - @group.Panel<br>
 						Price - @group.Price
 						</h3>
 					
