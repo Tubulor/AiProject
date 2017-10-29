@@ -1,4 +1,4 @@
-﻿@model FinalProject.Models.ViewModle
+@model FinalProject.Models.ViewModle
 @{
 	ViewBag.Title = "Home Page";
 }
@@ -86,12 +86,38 @@
 
     <section class="stocks">
         <h4>Apple Stock - @DateTime.Now</h4>
-        <Bid>162.76</Bid>
-        <AskRealtime />
-        <BidRealtime />
-        <BookValue>25.61</BookValue>
-        <Change_PercentChange>+5.64 - +3.58%</Change_PercentChange>
-        http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22AAPL%22)&env=store://datatables.org/alltableswithkeys
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+        <script>
+            var uri = 'api/products'; //TODO: CHANGE THIS TO THE YAHOO API:  http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22AAPL%22)&env=store://datatables.org/alltableswithkeys
+
+            $(document).ready(function () {
+                // Send an AJAX request
+                $.getJSON(uri)
+                    .done(function (data) {
+                        // On success, 'data' contains a list of products.
+                        $.each(data, function (key, item) {
+                            // Add a list item for the product.
+                            $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+                        });
+                    });
+            });
+
+            function formatItem(item) {
+                return item.Name + ': $' + item.Price + ' +' + item.ChangeDbl + ' (+' + item.ChangePct + '%)';
+            }
+
+            function find() {
+                var id = $('#prodId').val();
+                $.getJSON(uri + '/' + id)
+                    .done(function (data) {
+                        $('#product').text(formatItem(data));
+                    })
+                    .fail(function (jqXHR, textStatus, err) {
+                        $('#product').text('Error: ' + err);
+                    });
+            }
+        </script>
+       
     </section>
 
 
