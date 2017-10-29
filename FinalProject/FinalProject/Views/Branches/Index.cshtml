@@ -133,11 +133,13 @@
 				zoom: 10,
 				center: uluru
 			});
-				
+
+			var infowindow = new google.maps.InfoWindow();
+
 		 var branches = @Html.Raw(Json.Encode(Model));
    		 for (var i = 0; i < branches.length; i++) {
 					 var branch = branches[i];
-					 var address = branch.City + branch.Street +' '+ branch.HouseNumber;		
+					 var address = branch.City + branch.Street +' '+ branch.HouseNumber  ;		
 
 				geocoder.geocode({ address: address }, function (results, status) {
 
@@ -150,8 +152,11 @@
 							map: map
 						});
 
-
-
+						google.maps.event.addListener(marker, 'click', function () {
+							infowindow.setContent('<div><strong>' + branch.BranchName + '</strong><br>' +
+													results[0].formatted_address + '</div>');
+							infowindow.open(map, this);
+						});
 					}
 				});
 				 }
