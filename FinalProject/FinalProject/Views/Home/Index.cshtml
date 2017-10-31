@@ -44,7 +44,10 @@
 	<hr>
 }
 
-@Html.Partial("~/Views/Buys/MostPopular.cshtml");
+@if (Model != null)
+{
+	@Html.Partial("~/Views/Buys/MostPopular.cshtml");
+}
 
 <div id="searchResults">
 
