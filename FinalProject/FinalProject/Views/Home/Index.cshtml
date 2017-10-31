@@ -85,39 +85,46 @@
 	</section>
 
     <section class="stocks">
-        <h4>Apple Stock - @DateTime.Now</h4>
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+        <h4>Stocks - @DateTime.Now</h4>
         <script>
-            var uri = 'api/products'; //TODO: CHANGE THIS TO THE YAHOO API:  http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22AAPL%22)&env=store://datatables.org/alltableswithkeys
 
-            $(document).ready(function () {
-                // Send an AJAX request
-                $.getJSON(uri)
-                    .done(function (data) {
-                        // On success, 'data' contains a list of products.
-                        $.each(data, function (key, item) {
-                            // Add a list item for the product.
-                            $('<li>', { text: formatItem(item) }).appendTo($('#products'));
-                        });
-                    });
-            });
+            var company = 'AAPL';
 
-            function formatItem(item) {
-                return item.Name + ': $' + item.Price + ' +' + item.ChangeDbl + ' (+' + item.ChangePct + '%)';
+            function changeCompany(name) {
+                if (name) {
+                    company = name;
+                }
             }
 
-            function find() {
-                var id = $('#prodId').val();
-                $.getJSON(uri + '/' + id)
-                    .done(function (data) {
-                        $('#product').text(formatItem(data));
-                    })
-                    .fail(function (jqXHR, textStatus, err) {
-                        $('#product').text('Error: ' + err);
-                    });
+            changeCompany();
+
+            var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22AAPL%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=';
+            $.getJSON(url, callback);
+
+            var callback = function (_return /* The json returned for yahooapis */) {
+                console.log(callback);
+                var totalReturned = _return.query.count;
+                //OR: var totalReturned = _return.query.results.quote.length;
+                for (var i = 0; i < totalReturned; ++i) {
+                    var stock = _return.query.results.quote[i];
+                    var symbol = stock.symbol;
+                    var percent_change = stock.Change_PercentChange;
+                    var changeRealTime = stock.ChangeRealtime;
+
+                }
+
+                function formatItem() {
+                    return symbol + ': $' + stock + ' +' + changeRealTime + ' (+' + percent_change + '%)';
+                }
+
+                console.log(stock);
+                /**console.log(formatItem());**/
             }
+
+
+
         </script>
-       
+
     </section>
 
 
