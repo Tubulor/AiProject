@@ -53,7 +53,7 @@ using (Html.BeginForm())
         <div class="form-group">
             @Html.LabelFor(model => model.Inches, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Inches, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.DropDownList("Inches", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Inches, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -61,7 +61,7 @@ using (Html.BeginForm())
         <div class="form-group">
             @Html.LabelFor(model => model.Resolution, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Resolution, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Resolution", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Resolution, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -85,7 +85,7 @@ using (Html.BeginForm())
         <div class="form-group">
             @Html.LabelFor(model => model.Panel, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Panel, new { htmlAttributes = new { @class = "form-control" } })
+               @Html.DropDownList("Panel", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Panel, "", new { @class = "text-danger" })
             </div>
         </div>

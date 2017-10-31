@@ -21,8 +21,7 @@ namespace FinalProject.Controllers
 	public class ProductsController : Controller
 	{
 		private ApplicationDbContext db = new ApplicationDbContext();
-		
-
+				
 		// GET: Products
 		public ActionResult Index(string searchString, string Brand, string Inches)
 		{
@@ -90,6 +89,23 @@ namespace FinalProject.Controllers
 		// GET: Products/Create
 		public ActionResult Create()
 		{
+			ViewBag.Inches = new SelectList(Enum.GetValues(typeof(BuysController.Inches)).Cast<BuysController.Inches>().Select(v => new SelectListItem
+			{
+				Text = v.ToString().TrimStart('_'),
+				Value = v.ToString().TrimStart('_')
+			}).ToList(), "Value", "Text");
+			ViewBag.Resolution = new SelectList(Enum.GetValues(typeof(BuysController.Resolution)).Cast<BuysController.Resolution>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text");
+			ViewBag.Panel = new SelectList(Enum.GetValues(typeof(BuysController.Panel)).Cast<BuysController.Panel>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text");
+
+
 			return View();
 		}
 
@@ -122,6 +138,22 @@ namespace FinalProject.Controllers
 			{
 				return HttpNotFound();
 			}
+			ViewBag.Inches = new SelectList(Enum.GetValues(typeof(BuysController.Inches)).Cast<BuysController.Inches>().Select(v => new SelectListItem
+			{
+				Text = v.ToString().TrimStart('_'),
+				Value = v.ToString().TrimStart('_')
+			}).ToList(), "Value", "Text", products.Inches);
+			ViewBag.Resolution = new SelectList(Enum.GetValues(typeof(BuysController.Resolution)).Cast<BuysController.Resolution>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text", products.Resolution);
+			ViewBag.Panel = new SelectList(Enum.GetValues(typeof(BuysController.Panel)).Cast<BuysController.Panel>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text", products.Panel);
+
 			return View(products);
 		}
 
@@ -138,6 +170,23 @@ namespace FinalProject.Controllers
 				db.SaveChanges();
 				return RedirectToAction("Index");
 			}
+
+			ViewBag.Inches = new SelectList(Enum.GetValues(typeof(BuysController.Inches)).Cast<BuysController.Inches>().Select(v => new SelectListItem
+			{
+				Text = v.ToString().TrimStart('_'),
+				Value = v.ToString().TrimStart('_')
+			}).ToList(), "Value", "Text", products.Inches);
+			ViewBag.Resolution = new SelectList(Enum.GetValues(typeof(BuysController.Resolution)).Cast<BuysController.Resolution>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text", products.Resolution);
+			ViewBag.Panel = new SelectList(Enum.GetValues(typeof(BuysController.Panel)).Cast<BuysController.Panel>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text", products.Panel);
+
 			return View(products);
 		}
 

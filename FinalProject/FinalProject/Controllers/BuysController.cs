@@ -22,9 +22,9 @@ namespace FinalProject.Controllers
 	public class BuysController : Controller
 	{
 		private ApplicationDbContext db = new ApplicationDbContext();
-		enum Resolution : int { UltraHD, FullHD, HD };
-		enum Inches : int { _55, _49, _43, _42, _37, _32, _27, _24, _22, _21, _19, _17, _15, _14, _13 };
-		enum Panel : int { OLED, LED, LCD, Plasma };
+		public enum Resolution : int { UltraHD, FullHD, HD };
+		public enum Inches : int { _55, _49, _43, _42, _37, _32, _27, _24, _22, _21, _19, _17, _15, _14, _13 };
+		public enum Panel : int { OLED, LED, LCD, Plasma };
 
 		// GET: Buys
 		public ActionResult Index(string searchString, string Price)
