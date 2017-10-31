@@ -70,26 +70,38 @@
 	</article>
 	<div id="content">
 		<aside>
+
 			<section>
-				<header>
-					<h3>Categories</h3>
-				</header>
-				<ul>
-					<li><a href="#">Lorem ipsum dolor</a></li>
-					<li><a href="#">Sit amet consectetur</a></li>
-					<li><a href="#">Adipisicing elit sed</a></li>
-				</ul>
-			</section>
-			<section>
-				<header>
-					<h3>Archives</h3>
-				</header>
-				<ul>
-					<li><a href="#">December 2008</a></li>
-					<li><a href="#">January 2009</a></li>
-					<li><a href="#">February 2009</a></li>
-					<li><a href="#">March 2009</a></li>
-				</ul>
+                <Quote>
+                    <header>
+                        <h2>Quote of the day</h2>
+                    </header>
+                    <p id='random_quote'></p>
+                    <button class='btn btn-success'>New Quote</button>
+                    <script>
+                        function randomQuote() {
+                            $.ajax({
+                                url: "https://api.forismatic.com/api/1.0/?",
+                                dataType: "jsonp",
+                                data: "method=getQuote&format=jsonp&lang=en&jsonp=?",
+                                success: function (response) {
+                                    $("#random_quote").html("<p id='random_quote' class='lead text-center'>" +
+                                        response.quoteText + "<br/>&dash; " + response.quoteAuthor + " &dash;</p>");
+                                }
+                            });
+                        }
+
+                        $(function () {
+                            randomQuote();
+                        }); 
+
+                        $("button").click(function () {
+                            randomQuote();
+                        });
+                    </script>
+
+                </Quote>
+
 			</section>
 			<section>
 				<video width="150" height="100" controls>
