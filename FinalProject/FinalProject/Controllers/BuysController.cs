@@ -131,7 +131,7 @@ namespace FinalProject.Controllers
 			Input[0] = new double[] { resolution, inches, panel };
 			int[] x = Learning(Input,id);
 
-			int prodcutid = x[0] + 1;
+			int prodcutid = x[0];
 			//var viewmodel = new ViewModle();
 			//viewmodel.Products = db.Products.Find(2);
 			var result = db.Products.Where(p => p.ID == prodcutid);
@@ -145,37 +145,50 @@ namespace FinalProject.Controllers
 							select p).ToArray();
 
 			int resolution=0, inches=0, panel=0 ;
-			double[][] Input = new double[products.Count()][];
-			int[] output = new int[products.Count()];
-			for (int i = 0; i < products.Length; i++)
+            int length = products.Length;
+            int lastID = products[length-1].ID;
+            double[][] Input = new double[lastID+1][];
+            int[] output = new int[lastID+1];
+            for (int i = 0; i <= lastID; i++)
 			{
-				if (i + 1 != id) //skip the current item
-				{
-					if (Enum.IsDefined(typeof(Resolution), products[i].Resolution))
-					{
-						Console.WriteLine(products[i].Resolution);
-						resolution = (int)Enum.Parse(typeof(Resolution), products[i].Resolution);
+                for (int j = 0; j < products.Length; j++)
+                {
+                    if (products[j].ID == i)
+                    {
+                        if (products[j].ID != id) //skip the current item
+                        {
+                            if (Enum.IsDefined(typeof(Resolution), products[j].Resolution))
+                            {
+                                Console.WriteLine(products[j].Resolution);
+                                resolution = (int)Enum.Parse(typeof(Resolution), products[j].Resolution);
 
-					}
-					if (Enum.IsDefined(typeof(Inches), "_" + products[i].Inches))
-					{
-						inches = (int)Enum.Parse(typeof(Inches), "_" + products[i].Inches);
-					}
-					if (Enum.IsDefined(typeof(Panel), products[i].Panel))
-					{
-						panel = (int)Enum.Parse(typeof(Panel), products[i].Panel);
-					}
+                            }
+                            if (Enum.IsDefined(typeof(Inches), "_" + products[j].Inches))
+                            {
+                                inches = (int)Enum.Parse(typeof(Inches), "_" + products[j].Inches);
+                            }
+                            if (Enum.IsDefined(typeof(Panel), products[j].Panel))
+                            {
+                                panel = (int)Enum.Parse(typeof(Panel), products[j].Panel);
+                            }
 
-					Input[i] = new double[] { resolution, inches, panel };
-					output[i] = products[i].ID - 1;
-				}
-				else
-				{ //outlier
-					Input[i] = new double[] { 20,20 ,20 };
-					output[i] = id-1;
-				}
-
-			}
+                            Input[i] = new double[] { resolution, inches, panel };
+                            output[i] = products[j].ID;
+                            break;
+                        }
+                        else
+                        { //outlier
+                            Input[i] = new double[] { 20, 20, 20 };
+                            output[i] = id;
+                        }
+                    }
+                    else
+                    {
+                        Input[i] = new double[] { 20, 20, 20 };
+                        output[i] = i;
+                    }
+                }
+            }
 			// Create the Multi-label learning algorithm for the machine
 			var teacher = new MulticlassSupportVectorLearning<Linear>()
 			{
