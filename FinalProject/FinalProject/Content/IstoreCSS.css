@@ -166,17 +166,43 @@ p {
 	padding-bottom: 22px;
 }
 
+/*------------------------------
+=Quote
+------------------------------*/
+
+   aside quoterandom section {
+        resize: none;
+        margin: 22px 0 0 22px;
+        padding: 11px 22px;
+        background: -webkit-linear-gradient(left, black, darkblue); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, black, darkblue); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(right, black, darkblue); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to right, black, darkblue); /* Standard syntax */
+        /* Border-radius not implemented yet */
+        -moz-border-radius: 11px;
+        -webkit-border-radius: 11px;
+    }
 
 
+#quote {
+    resize: none;
+    display: block;
+    font-size: larger;
+}
+
+
+#random_quote {
+    resize: none;
+    font-size: medium;
+}
 /*------------------------------
 =NAVIGATION
 ------------------------------*/
-
 nav {
-	position: absolute;
-	left: 0;
-	width: 100%;
-	background: black; /* For browsers that do not support gradients */
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: black; /* For browsers that do not support gradients */
 }
 
 	nav ul {
@@ -223,10 +249,10 @@ nav {
 ------------------------------*/
 
 #intro {
-	position: relative;
-	margin-top: 44px;
-	-moz-border-radius: 44px;
-	-webkit-border-radius: 44px;
+    position: relative;
+    margin-top: 44px;
+    -moz-border-radius: 44px;
+    -webkit-border-radius: 44px;
 }
 
 	#intro h2, #intro p {
@@ -280,18 +306,24 @@ aside {
 	/*------------------------------
 =SIDEBAR
 ------------------------------*/
-	aside section {
-		margin: 22px 0 0 22px;
-		padding: 11px 22px;
-		background: #00cc00 0%; /* For browsers that do not support gradients */
-		background: -webkit-linear-gradient(to bottom, gray 0%, white ); /* For Safari 5.1 to 6.0 */
-		background: -o-linear-gradient(to bottom, gray 0%, white); /* For Opera 11.1 to 12.0 */
-		background: -moz-linear-gradient(to bottom, gray 0%,white ); /* For Firefox 3.6 to 15 */
-		background: linear-gradient(to bottom, gray 0%, white ); /* Standard syntax (must be last) */
-		/* Border-radius not implemented yet */
-		-moz-border-radius: 11px;
-		-webkit-border-radius: 11px;
-	}
+    aside section canvas {
+        background: -webkit-linear-gradient(left, aqua, darkblue); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, aqua, darkblue); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(right, aqua, darkblue); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to right, aqua, darkblue); /* Standard syntax */
+    }
+    
+    aside section {
+        margin: 22px 0 0 22px;
+        padding: 11px 22px;
+        background: -webkit-linear-gradient(left, black, darkblue); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, black, darkblue); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(right, black, darkblue); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to right, black, darkblue); /* Standard syntax */
+        /* Border-radius not implemented yet */
+        -moz-border-radius: 11px;
+        -webkit-border-radius: 11px;
+    }
 
 		aside section ul {
 			margin: 0 0 0 22px;

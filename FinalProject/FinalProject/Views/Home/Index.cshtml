@@ -2,7 +2,7 @@
 @{
 	ViewBag.Title = "Home Page";
 }
-
+<link rel="stylesheet" href="~/Content/style.css" type="text/css" media="screen" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
@@ -54,11 +54,11 @@
     @*@Html.Partial("~/Views/Products/ProductSearch.cshtml");*@
 
     <section class="products">
-
-        @foreach (var item in Model.Product)
-        {
+    
+    @foreach (var item in Model.Product)
+            {
 		<!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-
+        <BuyProduct>
             <div class="product-card">
                 <div class="product-image">
                     <img src="@Html.DisplayTextFor(modelItem => item.Image)" width="200" height="150">
@@ -79,10 +79,13 @@
                     <button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
                 </p>
             </div>
-            <hr>}
-        <!-- more products -->
-
+            <hr>
+        </BuyProduct>
+    }
+            <!-- more products -->
+    
     </section>
+
     @*-------------------------------------------stock test-----------------------------------------------
 
     <script>

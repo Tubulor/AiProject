@@ -59,9 +59,12 @@
 	</div>
 
 	<section id="intro">
+        <center><img src="~/Content/images/logo.png" /></center>
 		<!-- Introduction -->
-		<img src="~/Content/images/electronicbanner.jpg" />
+
 	</section>
+  
+
 	
 	<article id="mainContent">
 		<section>
@@ -70,44 +73,48 @@
 	</article>
 	<div id="content">
 		<aside>
+            <quoterandom>
+                <section>
+                    <div id="quote">
+                        <header>
+                            <h2 style="font-size:small">Quote of the day</h2>
+                        </header>
+                        <p id='random_quote' style="color:white"></p>
+                        <center>
+                            <button class='btn btn-info'>New Quote</button>
+                        </center>
+                        <script>
+                            function randomQuote() {
+                                $.ajax({
+                                    url: "https://api.forismatic.com/api/1.0/?",
+                                    dataType: "jsonp",
+                                    data: "method=getQuote&format=jsonp&lang=en&jsonp=?",
+                                    success: function (response) {
+                                        $("#random_quote").html("<p id='random_quote' class='lead text-center'>" +
+                                            response.quoteText + "<br/>&dash; " + response.quoteAuthor + " &dash;</p>");
+                                    }
+                                });
+                            }
 
-			<section>
-                <Quote>
-                    <header>
-                        <h2>Quote of the day</h2>
-                    </header>
-                    <p id='random_quote'></p>
-                    <button class='btn btn-success'>New Quote</button>
-                    <script>
-                        function randomQuote() {
-                            $.ajax({
-                                url: "https://api.forismatic.com/api/1.0/?",
-                                dataType: "jsonp",
-                                data: "method=getQuote&format=jsonp&lang=en&jsonp=?",
-                                success: function (response) {
-                                    $("#random_quote").html("<p id='random_quote' class='lead text-center'>" +
-                                        response.quoteText + "<br/>&dash; " + response.quoteAuthor + " &dash;</p>");
-                                }
+                            $(function () {
+                                randomQuote();
                             });
-                        }
 
-                        $(function () {
-                            randomQuote();
-                        }); 
+                            $("button").click(function () {
+                                randomQuote();
+                            });
+                        </script>
 
-                        $("button").click(function () {
-                            randomQuote();
-                        });
-                    </script>
+                    </div>
+                </section>
+            </quoterandom>
 
-                </Quote>
-
-			</section>
 			<section>
 				<video width="150" height="100" controls>
 					<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
 				</video>
 			</section>
+
 			<section>
 
 				<canvas id="myCanvas" width="150" height="150"></canvas>
@@ -139,8 +146,14 @@
 			</section>
 
 
+       
 		</aside>
 	</div>
+
+
+
+
+
 	<div id="mainContent">
 		<footer>
 			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
