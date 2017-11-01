@@ -121,9 +121,9 @@ using (Html.BeginForm())
 							Price - @Html.DisplayFor(model => item.Price)
 						</h3>
 					</div>
-					<p>
-						<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
-					</p>
+		                <btn align="right">
+                    <button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
+                </btn>
 				</div>
 				<hr>
 		

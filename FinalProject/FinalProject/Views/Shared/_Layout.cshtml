@@ -43,19 +43,12 @@
 					<li class="products">@Html.ActionLink("Products", "Index", "Products")</li>
 					<li class="statistics">@Html.ActionLink("Statistics", "statistics", "Buys")</li>
 					<li class="statistics">@Html.ActionLink("Branches", "Index", "Branches")</li>
-					<li>
-						<a href="@Url.Action("Facebook", "Home")">
-							<div id="transDemo2">
-								<div class="hover">
-									<img src=http://siteassets.pagecloud.com/alineinthewater/images/Facebook-icon-ID-5ccfe897-a855-4b95-f8dd-291fe4fc1173.png width="30" height="30">
-								</div>
-							</div>
-						</a>
-					</li>
 				</ul>
 				@Html.Partial("_LoginPartial")
-			</div>
+               </div>
+
 		</div>
+
 	</div>
 
 	<section id="intro">
@@ -73,11 +66,29 @@
 	</article>
 	<div id="content">
 		<aside>
+
+
+            <section>
+                <center>
+                    <a href="@Url.Action("Facebook", "Home")">
+                        <div id="transDemo2">
+                            <div class="hover">
+                                <img src="http://siteassets.pagecloud.com/alineinthewater/images/Facebook-icon-ID-5ccfe897-a855-4b95-f8dd-291fe4fc1173.png" width="70">
+                            </div>
+                        </div>
+                    </a>
+                    <fontfacebook style="color:white"><b>FaceBook</b></fontfacebook>
+                </center>
+            </section>
+
+
             <quoterandom>
                 <section>
                     <div id="quote">
                         <header>
-                            <h2 style="font-size:small">Quote of the day</h2>
+                            <center>
+                                <h4>Quote of the day</h4>
+                            </center>
                         </header>
                         <p id='random_quote' style="color:white"></p>
                         <center>
@@ -109,44 +120,46 @@
                 </section>
             </quoterandom>
 
+
 			<section>
-				<video width="150" height="100" controls>
-					<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
-				</video>
+                <center>
+                    <video controls>
+                        <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+                    </video>
+                </center>
 			</section>
 
 			<section>
+                <center>
+                    <canvas id="myCanvas" width="150" height="150"></canvas>
 
-				<canvas id="myCanvas" width="150" height="150"></canvas>
+                    <script>
+                            var c = document.getElementById("myCanvas");
+                            var ctx = c.getContext("2d");
+                            ctx.moveTo(5, 140);
+                            ctx.lineTo(20, 20);
+                            ctx.lineTo(35, 140);
+                            ctx.moveTo(11, 75);
+                            ctx.lineTo(28, 75);
+                            ctx.lineWidth = 8;
+                            ctx.stroke();
+                            ctx.beginPath();
+                            ctx.arc(75, 100, 30, 0, 2 * Math.PI);
+                            ctx.fillStyle = "orange";
+                            ctx.fill();
+                            ctx.stroke();
+                            ctx.moveTo(110, 135);
+                            ctx.lineTo(140, 135);
+                            ctx.moveTo(125, 135);
+                            ctx.lineTo(125, 10);
+                            ctx.moveTo(110, 10);
+                            ctx.lineTo(140, 10);
+                            ctx.stroke();
 
-				<script>
-					var c = document.getElementById("myCanvas");
-					var ctx = c.getContext("2d");
-					ctx.moveTo(5, 140);
-					ctx.lineTo(20, 20);
-					ctx.lineTo(35, 140);
-					ctx.moveTo(11, 75);
-					ctx.lineTo(28, 75);
-					ctx.lineWidth = 8;
-					ctx.stroke();
-					ctx.beginPath();
-					ctx.arc(75, 100, 30, 0, 2 * Math.PI);
-					ctx.fillStyle = "orange";
-					ctx.fill();
-					ctx.stroke();
-					ctx.moveTo(110, 135);
-					ctx.lineTo(140, 135);
-					ctx.moveTo(125, 135);
-					ctx.lineTo(125, 10);
-					ctx.moveTo(110, 10);
-					ctx.lineTo(140, 10);
-					ctx.stroke();
-
-				</script>
+                    </script>
+                </center>
 			</section>
-
-
-       
+ 
 		</aside>
 	</div>
 

@@ -75,9 +75,9 @@
                         Price - @Html.DisplayFor(model => item.Price)
                     </h3>
                 </div>
-                <p>
+                <btn align="right">
                     <button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
-                </p>
+                </btn>
             </div>
             <hr>
         </BuyProduct>

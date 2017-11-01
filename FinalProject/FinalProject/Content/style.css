@@ -8,9 +8,23 @@ price {
     color: greenyellow;
 }
 
+btn {
+    position:relative;
+    width:100%;
+    height:100%;
+}
+
 h2 {
     color: white;
-    text-shadow:none;
+    text-shadow: none;
+}
+
+h4 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    color: white;
+    text-shadow: none;
+    padding: 15px 0;
 }
 
 h7 {
@@ -24,18 +38,24 @@ OtherProducts {
 }
 
 RelatedProduct {
-	width: 100%;
-	height: 100%;
-	background-image: url(images/ProductsBack.png);
-	border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    background: -webkit-linear-gradient(left, #BFBFBF, #959595); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #BFBFBF, #959595); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #BFBFBF, #959595); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #BFBFBF,#959595 ); /* Standard syntax */
+    border-radius: 10px;
 }
 
 MostP {
-	display: block;
-	margin-top: 20px;
-	font-size: larger;
-	background-image: url(images/Recommended.png);
-	border-radius: 8px;
+    display: block;
+    margin-top: 20px;
+    font-size: larger;
+    background: -webkit-linear-gradient(left, #2D7986, #76A8B0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #2D7986, #76A8B0); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #2D7986, #76A8B0); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #2D7986,#76A8B0 ); /* Standard syntax */
+    border-radius: 8px;
 }
 
     MostP.MPopular {
@@ -45,11 +65,14 @@ MostP {
 
 
 Intrest {
-	display: block;
-	margin-bottom: 1px;
-	font-size: larger;
-	background-image: url(images/ProductsBack.png);
-	border-radius: 8px;
+    display: block;
+    margin-bottom: 1px;
+    font-size: larger;
+    background: -webkit-linear-gradient(left, #BFBFBF, #959595); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #BFBFBF, #959595); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #BFBFBF, #959595); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #BFBFBF,#959595 ); /* Standard syntax */
+    border-radius: 8px;
 }
 
 Intrest headline {
@@ -62,13 +85,16 @@ Intrest headline {
 
 
 BuyProduct {
-	width: 100%;
-	height: 100%;
-	display: block;
-	margin-top: 20px;
-	font-size: larger;
-	background-image: url(images/ProductsBack.png);
-	border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin-top: 20px;
+    font-size: larger;
+    background: -webkit-linear-gradient(left, #BFBFBF, #959595); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #BFBFBF, #959595); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #BFBFBF, #959595); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #BFBFBF,#959595 ); /* Standard syntax */
+    border-radius: 8px;
 }
 
 BuyProduct.product-card {
@@ -79,7 +105,7 @@ BuyProduct.product-card {
 }
 
 BuyProduct.product-card {
-    flex: 1 16%;
+    flex: 1 25%;
 
 }
 
@@ -91,6 +117,7 @@ BuyProduct.product-image img {
 }
 
 BuyProduct.product-info {
+    width:100%;
     margin-left: 15px;
     margin-top: auto;
 
