@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="~/Content/style.css" type="text/css" media="screen" />
 
 
-<BuyProduct>
+<MostP>
     <div class="product-card">
 
         <div class="product-image">
@@ -65,7 +65,7 @@
 
             <div class="form-group">
                 <div align="center">
-                    Are you sure ?
+                  <b>Are you sure ?</b>  
                     <input type="submit" value="Buy" class="btn btn-default" />
                 </div>
             </div>
@@ -75,11 +75,11 @@
         <br /><br />
 
     }
-</BuyProduct>
+</MostP>
     <br />
     <div>
         <OtherProducts>
-            @Html.ActionLink("Watch Other Products", "Index")
+			@Html.ActionLink("Back to home page", "Index", "Home")
         </OtherProducts>
     </div>
 <br />
