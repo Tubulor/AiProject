@@ -2,31 +2,32 @@
 <section class="products">
 
 	@foreach (var item in Model)
-			{
+	{
 		<!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-
-		<div class="product-card">
-			<div class="product-image">
-				<img src="@Html.DisplayFor(modelItem => item.Image)" width="200" height="150">
+		<BuyProduct>
+			<div class="product-card">
+				<div class="product-image">
+					<img src="@Html.DisplayTextFor(modelItem => item.Image)" width="200" height="150">
+				</div>
+				<div class="product-info">
+					<h2>@Html.DisplayFor(model => item.ProductName)</h2>
+					<h3>
+						Description - @Html.DisplayFor(model => item.Description)<br>
+						Brand - @Html.DisplayFor(model => item.Brand)<br>
+						Inches - @Html.DisplayFor(model => item.Inches)<br>
+						Resolution - @Html.DisplayFor(model => item.Resolution)<br>
+						RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
+						Panel - @Html.DisplayFor(model => item.Panel)<br>
+						Price - @Html.DisplayFor(model => item.Price)
+					</h3>
+				</div>
+				<p>
+					<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
+				</p>
 			</div>
-			<div class="product-info">
-				<h2>@Html.DisplayFor(model => item.ProductName)</h2>
-				<h3>
-					Description - @Html.DisplayFor(model => item.Description)<br>
-					Brand - @Html.DisplayFor(model => item.Brand)<br>
-					Inches - @Html.DisplayFor(model => item.Inches)<br>
-					Resolution - @Html.DisplayFor(model => item.Resolution)<br>
-					RefreshRate - @Html.DisplayFor(model => item.RefreshRate)<br>
-					Discount- @Html.DisplayFor(model => item.Discount)<br>
-					<p class="price">Price - @Html.DisplayFor(model => item.Price)</p>
-				</h3>
-			</div>
-			<p>
-				<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @Html.DisplayFor(model => item.ID) })'">BUY!</button>
-			</p>
-		</div>
-				<hr>
-			}
+			<hr>
+		</BuyProduct>
+	}
 	<!-- more products -->
 
 </section>

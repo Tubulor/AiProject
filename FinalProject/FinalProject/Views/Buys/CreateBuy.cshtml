@@ -5,16 +5,40 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Are you sure ?</h2>
+<link rel="stylesheet" href="~/Content/style.css" type="text/css" media="screen" />
 
-@using (Html.BeginForm("CreateBuy", "Buys", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
+<MostP>
+    <div class="product-card">
 
-        <dl class="dl-horizontal">
+        <div class="product-image">
+            <img src="@Html.DisplayTextFor(modelItem => Model.Products.Image)" width="200" height="150">
+        </div>
+
+        <div class="product-info">
+            <h2>@Html.DisplayFor(model => Model.Products.ProductName)</h2>
+            <h3>
+                Description - @Html.DisplayFor(model => Model.Products.Description)<br>
+                Brand - @Html.DisplayFor(model => Model.Products.Brand)<br>
+                Inches - @Html.DisplayFor(model => Model.Products.Inches)<br>
+                Resolution - @Html.DisplayFor(model => Model.Products.Resolution)<br>
+                RefreshRate - @Html.DisplayFor(model => Model.Products.RefreshRate)<br>
+                Panel - @Html.DisplayFor(model => Model.Products.Panel)<br><br>
+                <price>
+                    Price - @Html.DisplayFor(model => Model.Products.Price)
+                </price>
+            </h3>
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm("CreateBuy", "Buys", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Buys.ProductsID, "PostID", htmlAttributes: new { @class = "hidden" })
@@ -26,37 +50,48 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Buys.MembersID, "MemberID", htmlAttributes: new { @class = "hidden" })
-                @Html.HiddenFor(model => model.Buys.MembersID, new { Value = @User.Identity.GetUserId()})
+                @Html.LabelFor(model => model.Buys.MembersID, "PostID", htmlAttributes: new { @class = "hidden" })
+                @Html.HiddenFor(model => model.Buys.MembersID, new { Value = @User.Identity.GetUserId() })
                 <div class="col-md-10">
                     @Html.ValidationMessageFor(model => model.Buys.MembersID, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Buys.PriceBought, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => Model.Products.Price)
-                    @Html.HiddenFor(model => model.Buys.PriceBought, new { Value = @Model.Products.Price })
-                    @Html.ValidationMessageFor(model => model.Buys.PriceBought, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Buys.PriceBought, "PostID", htmlAttributes: new { @class = "hidden" })
+                @Html.HiddenFor(model => model.Buys.PriceBought, new { Value = @Model.Products.Price })
+
+            </div>
+
+            <div class="form-group">
+                <div align="center">
+                  <b>Are you sure ?</b>  
+                    <input type="submit" value="Buy" class="btn btn-default" />
                 </div>
             </div>
 
-        </dl>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Buy" class="btn btn-default" />
-            </div>
         </div>
+
+        <br /><br />
+
+    }
+</MostP>
+    <br />
+    <div>
+        <OtherProducts>
+			@Html.ActionLink("Back to home page", "Index", "Home")
+        </OtherProducts>
     </div>
+<br />
+    <Intrest>
+    <headline>You also might be interested in: </headline>
+    </Intrest>
+        @{
+            Html.RenderAction("RelatedProduct", new { id = Model.Products.ID });
+        }
 
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

@@ -7,23 +7,31 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinalProject.Models;
+using Accord.Controls;
+using Accord.MachineLearning.VectorMachines.Learning;
+using Accord.Math.Optimization.Losses;
+using Accord.Statistics;
+using Accord.Statistics.Kernels;
+using Accord.Statistics.Models.Fields.Functions;
+using Accord.Statistics.Models.Fields;
+using Accord.Statistics.Models.Fields.Learning;
 
 namespace FinalProject.Controllers
 {
-    public class ProductsController : Controller
-    {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: Products
-        public ActionResult Index(string searchString,string Brand ,string Inches)
-        {
+	public class ProductsController : Controller
+	{
+		private ApplicationDbContext db = new ApplicationDbContext();
+				
+		// GET: Products
+		public ActionResult Index(string searchString, string Brand, string Inches)
+		{
 			var products = from p in db.Products
 						   select p;
 
 			if (!String.IsNullOrEmpty(searchString))
 			{
 				products = products.Where(s => s.ProductName.Contains(searchString));
-									  
+
 			}
 			if (!String.IsNullOrEmpty(Brand))
 			{
@@ -38,9 +46,9 @@ namespace FinalProject.Controllers
 
 
 			return View(products.ToList());
-        }
+		}
 
-		
+
 		public PartialViewResult ProductSearch(String ProductName, String Brand, String Inches)
 		{
 
@@ -65,106 +73,168 @@ namespace FinalProject.Controllers
 
 		// GET: Products/Details/5
 		public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Products products = db.Products.Find(id);
-            if (products == null)
-            {
-                return HttpNotFound();
-            }
-            return View(products);
-        }
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Products products = db.Products.Find(id);
+			if (products == null)
+			{
+				return HttpNotFound();
+			}
+			return View(products);
+		}
 
-        // GET: Products/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+		// GET: Products/Create
+		public ActionResult Create()
+		{
+			ViewBag.Inches = new SelectList(Enum.GetValues(typeof(BuysController.Inches)).Cast<BuysController.Inches>().Select(v => new SelectListItem
+			{
+				Text = v.ToString().TrimStart('_'),
+				Value = v.ToString().TrimStart('_')
+			}).ToList(), "Value", "Text");
+			ViewBag.Resolution = new SelectList(Enum.GetValues(typeof(BuysController.Resolution)).Cast<BuysController.Resolution>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text");
+			ViewBag.Panel = new SelectList(Enum.GetValues(typeof(BuysController.Panel)).Cast<BuysController.Panel>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text");
 
-        // POST: Products/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ProductName,Price,Description,Brand,Inches,Resolution,RefreshRate,Image,Video,Discount")] Products products)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Products.Add(products);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(products);
-        }
+			return View();
+		}
 
-        // GET: Products/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Products products = db.Products.Find(id);
-            if (products == null)
-            {
-                return HttpNotFound();
-            }
-            return View(products);
-        }
+		// POST: Products/Create
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Create([Bind(Include = "ID,ProductName,Price,Description,Brand,Inches,Resolution,RefreshRate,Image,Panel")] Products products)
+		{
+			if (ModelState.IsValid)
+			{
+				db.Products.Add(products);
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ProductName,Price,Description,Brand,Inches,Resolution,RefreshRate,Image,Video,Discount")] Products products)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(products).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(products);
-        }
+			return View(products);
+		}
 
-        // GET: Products/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Products products = db.Products.Find(id);
-            if (products == null)
-            {
-                return HttpNotFound();
-            }
-            return View(products);
-        }
+		// GET: Products/Edit/5
+		public ActionResult Edit(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Products products = db.Products.Find(id);
+			if (products == null)
+			{
+				return HttpNotFound();
+			}
+			ViewBag.Inches = new SelectList(Enum.GetValues(typeof(BuysController.Inches)).Cast<BuysController.Inches>().Select(v => new SelectListItem
+			{
+				Text = v.ToString().TrimStart('_'),
+				Value = v.ToString().TrimStart('_')
+			}).ToList(), "Value", "Text", products.Inches);
+			ViewBag.Resolution = new SelectList(Enum.GetValues(typeof(BuysController.Resolution)).Cast<BuysController.Resolution>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text", products.Resolution);
+			ViewBag.Panel = new SelectList(Enum.GetValues(typeof(BuysController.Panel)).Cast<BuysController.Panel>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text", products.Panel);
 
-        // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Products products = db.Products.Find(id);
-            db.Products.Remove(products);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+			return View(products);
+		}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-    }
-}
+		// POST: Products/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Edit([Bind(Include = "ID,ProductName,Price,Description,Brand,Inches,Resolution,RefreshRate,Image,Panel")] Products products)
+		{
+			if (ModelState.IsValid)
+			{
+				db.Entry(products).State = EntityState.Modified;
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+
+			ViewBag.Inches = new SelectList(Enum.GetValues(typeof(BuysController.Inches)).Cast<BuysController.Inches>().Select(v => new SelectListItem
+			{
+				Text = v.ToString().TrimStart('_'),
+				Value = v.ToString().TrimStart('_')
+			}).ToList(), "Value", "Text", products.Inches);
+			ViewBag.Resolution = new SelectList(Enum.GetValues(typeof(BuysController.Resolution)).Cast<BuysController.Resolution>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text", products.Resolution);
+			ViewBag.Panel = new SelectList(Enum.GetValues(typeof(BuysController.Panel)).Cast<BuysController.Panel>().Select(v => new SelectListItem
+			{
+				Text = v.ToString(),
+				Value = v.ToString()
+			}).ToList(), "Value", "Text", products.Panel);
+
+			return View(products);
+		}
+
+		// GET: Products/Delete/5
+		public ActionResult Delete(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Products products = db.Products.Find(id);
+			if (products == null)
+			{
+				return HttpNotFound();
+			}
+			return View(products);
+		}
+
+		// POST: Products/Delete/5
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public ActionResult DeleteConfirmed(int id)
+		{
+			Products products = db.Products.Find(id);
+			db.Products.Remove(products);
+			db.SaveChanges();
+			return RedirectToAction("Index");
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				db.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		
+
+
+
+
+	}
+
+
+}		
+	
+		
+
+	

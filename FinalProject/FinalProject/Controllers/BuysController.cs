@@ -8,6 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using FinalProject.Models;
 using System.IO;
+using Accord.Statistics.Models.Fields.Functions;
+using Accord.Statistics.Models.Fields;
+using Accord.Statistics.Models.Fields.Learning;
+using Accord.Statistics.Models.Markov;
+using Accord.Statistics.Models.Markov.Learning;
+using Accord.MachineLearning.VectorMachines.Learning;
+using Accord.Statistics.Kernels;
 
 namespace FinalProject.Controllers
 {
@@ -15,6 +22,9 @@ namespace FinalProject.Controllers
 	public class BuysController : Controller
 	{
 		private ApplicationDbContext db = new ApplicationDbContext();
+		public enum Resolution : int { UltraHD, FullHD, HD };
+		public enum Inches : int { _55, _49, _43, _42, _37, _32, _27, _24, _22, _21, _19, _17, _15, _14, _13 };
+		public enum Panel : int { OLED, LED, LCD, Plasma };
 
 		// GET: Buys
 		public ActionResult Index(string searchString, string Price)
@@ -80,8 +90,8 @@ namespace FinalProject.Controllers
 		// GET: Buys/CreateBuy/id
 		public ActionResult CreateBuy(int? id)
 		{
+			
 			var viewmodel = new ViewModle();
-
 			if (id == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -91,7 +101,111 @@ namespace FinalProject.Controllers
 			{
 				return HttpNotFound();
 			}
+
+			
 			return View(viewmodel);
+		}
+		public PartialViewResult RelatedProduct(int id)
+		{
+
+			int resolution = 0, inches = 0, panel = 0;
+			var viewmodel = new ViewModle();
+			double[][] Input = new double[1][];
+			
+			viewmodel.Products = db.Products.Find(id);
+			
+			if (Enum.IsDefined(typeof(Resolution), viewmodel.Products.Resolution))
+			{
+				resolution = (int)Enum.Parse(typeof(Resolution), viewmodel.Products.Resolution);
+
+			}
+			if (Enum.IsDefined(typeof(Inches), "_" + viewmodel.Products.Inches))
+			{
+				inches = (int)Enum.Parse(typeof(Inches), "_" + viewmodel.Products.Inches);
+			}
+			if (Enum.IsDefined(typeof(Panel), viewmodel.Products.Panel))
+			{
+				panel = (int)Enum.Parse(typeof(Panel), viewmodel.Products.Panel);
+			}
+
+			Input[0] = new double[] { resolution, inches, panel };
+			int[] x = Learning(Input,id);
+
+			int prodcutid = x[0];
+			//var viewmodel = new ViewModle();
+			//viewmodel.Products = db.Products.Find(2);
+			var result = db.Products.Where(p => p.ID == prodcutid);
+			return PartialView("RelatedProduct", result);
+		}
+
+		
+		public int[] Learning(double[][] Inputs,int id )
+		{
+			var products = (from p in db.Products
+							select p).ToArray();
+
+			int resolution=0, inches=0, panel=0 ;
+            int length = products.Length;
+            int lastID = products[length-1].ID;
+            double[][] Input = new double[lastID+1][];
+            int[] output = new int[lastID+1];
+            for (int i = 0; i <= lastID; i++)
+			{
+                for (int j = 0; j < products.Length; j++)
+                {
+                    if (products[j].ID == i)
+                    {
+                        if (products[j].ID != id) //skip the current item
+                        {
+                            if (Enum.IsDefined(typeof(Resolution), products[j].Resolution))
+                            {
+                                Console.WriteLine(products[j].Resolution);
+                                resolution = (int)Enum.Parse(typeof(Resolution), products[j].Resolution);
+
+                            }
+                            if (Enum.IsDefined(typeof(Inches), "_" + products[j].Inches))
+                            {
+                                inches = (int)Enum.Parse(typeof(Inches), "_" + products[j].Inches);
+                            }
+                            if (Enum.IsDefined(typeof(Panel), products[j].Panel))
+                            {
+                                panel = (int)Enum.Parse(typeof(Panel), products[j].Panel);
+                            }
+
+                            Input[i] = new double[] { resolution, inches, panel };
+                            output[i] = products[j].ID;
+                            break;
+                        }
+                        else
+                        { //outlier
+                            Input[i] = new double[] { 20, 20, 20 };
+                            output[i] = id;
+                        }
+                    }
+                    else
+                    {
+                        Input[i] = new double[] { 20, 20, 20 };
+                        output[i] = i;
+                    }
+                }
+            }
+			// Create the Multi-label learning algorithm for the machine
+			var teacher = new MulticlassSupportVectorLearning<Linear>()
+			{
+				Learner = (p) => new SequentialMinimalOptimization<Linear>()
+				{
+					Complexity = 10000.0 // Create a hard SVM
+				}
+			};
+
+			// Learn a multi-label SVM using the teacher
+			var svm = teacher.Learn(Input, output);
+
+
+			// Compute the classifier answers for the given inputs
+			int []answers =svm.Decide(Inputs);
+			
+			return answers;
 		}
 
 		// POST: Buys/Create

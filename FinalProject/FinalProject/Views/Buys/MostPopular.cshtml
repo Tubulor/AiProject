@@ -1,13 +1,16 @@
 ﻿@model FinalProject.Models.ViewModle
 @using Microsoft.AspNet.Identity
+
+<link rel="stylesheet" href="~/Content/style.css" type="text/css" media="screen" />
+
 	@{
-		//return the most popular item - when no user is logged in 
+		//return the most popular item - when no user is logged in
 		var mostpopular = Model.Buy.GroupBy(m => m.ProductsID).Select(g => new { ProductID = g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).First();
 
 		//if user is authenticated - change mostpopular by the following algorithm
 		if (@User.Identity.IsAuthenticated)
 		{
-			
+
 			//return all buys from connected user
 			var UserBuy = Model.Buy.Where(x => x.MembersID == @User.Identity.GetUserId());
 
@@ -22,7 +25,7 @@
 								select m).ToList();
 
 
-			//return the brand that the user bought the most 
+			//return the brand that the user bought the most
 			var countbrand = BrandUser.GroupBy(m => m.Products.Brand).Select(g => new { brand = g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).First();
 
 			//return the most popular item of this brand
@@ -39,35 +42,36 @@
 			x.Price,
 			x.RefreshRate,
 			x.Resolution,
-			x.Video,
-			x.Discount,
 			x.Brand,
-			x.Description
+			x.Description,
+			x.Panel
 		}).First();
 
 		<!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
-		<div class="Popular">
-			<div class="product-card">
-				<div class="product-image">
-					<img src="@group.Image" width="200" height="150">
-				</div>
-				<div class="product-info">
-					<h2>@group.ProductName</h2>
-					<h3>
-						Description - @group.Description<br>
-						Brand - @group.Brand<br>
-						Inches - @group.Inches<br>
-						Resolution - @group.Resolution<br>
-						RefreshRate - @group.RefreshRate<br>
-						Discount- @group.Discount<br>
-						<p class="price">Price - @group.Price</p>
-					</h3>
-					<h7>Recommended for you!</h7>
-				</div>
-				<p>
-					<button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @group.ID })'">BUY!</button>
-				</p>
-			</div>
-		</div>
-				<hr>
-	}
+        <MostP>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="@group.Image" width="200" height="150">
+                    </div>
+                    <div class="product-info">
+                        <h2>@group.ProductName</h2>
+                        <h3>
+                            Description - @group.Description<br>
+                            Brand - @group.Brand<br>
+                            Inches - @group.Inches<br>
+                            Resolution - @group.Resolution<br>
+                            RefreshRate - @group.RefreshRate<br>
+                            Panel - @group.Panel<br>
+                            Price - @group.Price
+                        </h3>
+
+                        <h7>Recommended for you!</h7>
+                    </div>
+                    <p>
+                        <button class="button button1" onclick="location.href='@Url.Action("CreateBuy", "Buys", new { id = @group.ID })'">BUY!</button>
+                    </p>
+                </div>
+            <hr>
+        </MostP>
+    }
