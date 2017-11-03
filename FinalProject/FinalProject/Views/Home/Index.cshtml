@@ -44,7 +44,7 @@
 	<hr>
 }
 
-@if (Model != null)
+@if (Model.Buys != null)
 {
 	@Html.Partial("~/Views/Buys/MostPopular.cshtml");
 }
@@ -85,31 +85,6 @@
             <!-- more products -->
     
     </section>
-
-    @*-------------------------------------------stock test-----------------------------------------------
-
-    <script>
-        var callback = function (_return /* The json returned for yahooapis */) {
-            var totalReturned = _return.query.count;
-            //OR: var totalReturned = _return.query.results.quote.length;
-            for (var i = 0; i < totalReturned; ++i) {
-                var stock = _return.query.results.quote[i];
-                var symbol = stock.symbol;
-                var percent_change = stock.Change_PercentChange;
-                var changeRealTime = stock.ChangeRealtime;
-
-            }
-        }
-
-        var url = 'http://query.yahooapis.com/v1/public/yql';
-        var startDate = '2012-01-01';
-        var endDate = '2012-01-08';
-        var data = encodeURIComponent('select * from yahoo.finance.historicaldata where symbol in ("YHOO","AAPL","GOOG","MSFT") and startDate = "' + startDate + '" and endDate = "' + endDate + '"');
-        $.getJSON(url, 'q=' + data + "&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json", callback);
-
-        console.log(data);
-    </script>*@
-    @*-------------------------------------------stock test-----------------------------------------------*@
 
 </div>
 
