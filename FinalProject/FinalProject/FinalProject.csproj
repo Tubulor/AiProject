@@ -405,7 +405,9 @@
     <Content Include="Views\Branches\Details.cshtml" />
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
-    <Content Include="Views\Branches\BranchSearch.cshtml" />
+    <Content Include="..\..\..\..\..\Desktop\BranchSearch.cshtml">
+      <Link>Views\Branches\BranchSearch.cshtml</Link>
+    </Content>
     <Content Include="Views\Products\ProductSearch.cshtml" />
     <Content Include="Views\Home\Facebook.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />

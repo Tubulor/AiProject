@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FinalProject.Models.Branches>
+@model IEnumerable<FinalProject.Models.Branches>
 
 @foreach (var item in Model)
 {
@@ -21,7 +21,7 @@
 			<h2>@Html.DisplayFor(model => item.BranchName)</h2>
 			<h3>
 				<b>Country</b> - @Html.DisplayFor(model => item.Country)<br>
-				<b>City</b> - @Html.DisplayFor(model => item.City)<br>
+                <b>City</b> - <span id="city">@Html.DisplayFor(model => item.City)</span> <br>
 				<b>Street</b> - @Html.DisplayFor(model => item.Street)<br>
 				<b>House number</b> - @Html.DisplayFor(model => item.HouseNumber)<br>
 				<b>Phone number</b> - @Html.DisplayFor(model => item.PhoneNumber)<br>
@@ -30,6 +30,32 @@
 			</h3>
 		</div>
 	</div>
+
+    <h4><b>Weather forcast: </b>@DateTime.Now</h4>
+    <h3 id="weather"></h3>
+    <script>
+        showWeather();
+        function showWeather() {
+            var city = document.getElementById('city').textContent;
+            var url = 'http://api.openweathermap.org/data/2.5/weather?q=';
+            url = url.concat(city);
+            url = url.concat('&appid=a1da3ea71d2f648421800843f24e4996');
+
+            $.getJSON(url, function (data) {
+
+                var main = data.weather[0].main;
+                var description = data.weather[0].description;
+                var temp = data.main.temp - 273.15;
+                temp = +temp.toFixed(1); //leave only one digit after the decimal dot
+                var humidity = data.main.humidity;
+                var wind = [data.wind.speed, data.wind.deg];
+                //var wind = [1, 2];
+                var weatherJSON = JSON.stringify(data);
+                document.getElementById('weather').innerHTML = 'Main: ' + main + ', ' + description + '<br>Temp: ' + temp + ' &#176;C' + '<br>Humidity: ' + humidity + '%<br>Wind: ' + wind[0] + ' Mps, ' + wind[1] + ' Degrees';
+            });
+        }
+
+    </script>
 
 	<hr>
 }
