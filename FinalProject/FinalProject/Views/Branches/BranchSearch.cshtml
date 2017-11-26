@@ -1,35 +1,116 @@
 ﻿@model IEnumerable<FinalProject.Models.Branches>
 
+
 @foreach (var item in Model)
+
 {
-	var status = "";
 
-	if (item.Saturday)
-	{
-		status = "Open";
-	}
-	else
-	{
-		status = "Close";
-	}
+    var status = "";
 
-	<div class="product-card">
-		<div class="product-image">
-			<img src="@Html.DisplayTextFor(model => item.Image)">
-		</div>
-		<div class="product-info">
-			<h2>@Html.DisplayFor(model => item.BranchName)</h2>
-			<h3>
-				<b>Country</b> - @Html.DisplayFor(model => item.Country)<br>
-				<b>City</b> - @Html.DisplayFor(model => item.City)<br>
-				<b>Street</b> - @Html.DisplayFor(model => item.Street)<br>
-				<b>House number</b> - @Html.DisplayFor(model => item.HouseNumber)<br>
-				<b>Phone number</b> - @Html.DisplayFor(model => item.PhoneNumber)<br>
-				<b>Saturday</b> - @status <br>
-				<b>Branch number</b> - @Html.DisplayFor(model => item.BranchNumber)
-			</h3>
-		</div>
-	</div>
 
-	<hr>
+    if (item.Saturday)
+
+    {
+
+        status = "Open";
+
+    }
+
+    else
+
+    {
+
+        status = "Close";
+
+    }
+
+
+    <div class="product-card">
+
+        <div class="product-image">
+
+            <img src="@Html.DisplayTextFor(model => item.Image)">
+
+        </div>
+
+        <div class="product-info">
+
+            <h2>@Html.DisplayFor(model => item.BranchName)</h2>
+      
+            <h3>
+
+                <b>Country</b> - @Html.DisplayFor(model => item.Country)<br>
+
+                <b>City</b> - <span id="city">@Html.DisplayFor(model => item.City)</span> <br>
+
+                <b>Street</b> - @Html.DisplayFor(model => item.Street)<br>
+
+                <b>House number</b> - @Html.DisplayFor(model => item.HouseNumber)<br>
+
+                <b>Phone number</b> - @Html.DisplayFor(model => item.PhoneNumber)<br>
+
+                <b>Saturday</b> - @status <br>
+
+                <b>Branch number</b> - @Html.DisplayFor(model => item.BranchNumber)
+
+            </h3>
+
+        </div>
+
+    </div>
+
+  
+        <h2><b>Weather forcast: </b>@DateTime.Now</h2>
+
+        <div id=@Html.Raw(Json.Encode(item.City))></div>
+
+        <script>
+
+            var jsonstr = @Html.Raw(Json.Encode(item.City));
+
+            showWeather(jsonstr);
+
+        function showWeather(cityName) {
+
+        var city = cityName;
+
+        var url = 'http://api.openweathermap.org/data/2.5/weather?q=';
+
+        url = url.concat(city);
+
+        url = url.concat('&appid=a1da3ea71d2f648421800843f24e4996');
+
+
+            $.getJSON(url, function (data) {
+
+                
+                var main = data.weather[0].main;
+
+                var description = data.weather[0].description;
+
+                var temp = data.main.temp - 273.15;
+
+                temp = +temp.toFixed(1); //leave only one digit after the decimal dot
+
+                var humidity = data.main.humidity;
+
+                var wind = [data.wind.speed, data.wind.deg];
+
+                //var wind = [1, 2];
+
+                var weatherJSON = JSON.stringify(data);
+
+                document.getElementById(city).innerHTML = 'Main: ' + main + ', ' + description + '<br>Temp: ' + temp + ' &#176;C' + '<br>Humidity: ' + humidity + '%<br>Wind: ' + wind[0] + ' Mps, ' + wind[1] + ' Degrees ';
+                
+
+
+            });
+
+
+    }
+
+
+        </script>
+        <hr>
+
 }
