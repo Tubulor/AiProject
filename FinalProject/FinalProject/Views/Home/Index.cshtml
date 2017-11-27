@@ -44,7 +44,7 @@
 	<hr>
 }
 
-@if (Model.Buy.ToString() != null)
+@if (Model.Buy.Count() != 0)
 {
 	@Html.Partial("~/Views/Buys/MostPopular.cshtml");
 }
