@@ -3,6 +3,9 @@
 	ViewBag.Title = "Statistics";
 }
 
+
+@if (User.Identity.Name.Equals("admin@gmail.com"))
+{
 <h2>Statistics</h2>
 
 <h2>Number of sales per product</h2>
@@ -208,4 +211,9 @@
 
 
 </script>
+}
 
+else
+{
+    <h2 style="color:red"><br /><br />UNAuthorized !!!</h2>
+}
