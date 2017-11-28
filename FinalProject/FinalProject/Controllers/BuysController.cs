@@ -159,9 +159,8 @@ namespace FinalProject.Controllers
                         {
                             if (Enum.IsDefined(typeof(Resolution), products[j].Resolution))
                             {
-                                Console.WriteLine(products[j].Resolution);
+                                //Console.WriteLine(products[j].Resolution);
                                 resolution = (int)Enum.Parse(typeof(Resolution), products[j].Resolution);
-
                             }
                             if (Enum.IsDefined(typeof(Inches), "_" + products[j].Inches))
                             {
@@ -203,7 +202,7 @@ namespace FinalProject.Controllers
 
 
 			// Compute the classifier answers for the given inputs
-			int []answers =svm.Decide(Inputs);
+			int []answers = svm.Decide(Inputs);
 			
 			return answers;
 		}

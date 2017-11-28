@@ -1,6 +1,22 @@
 ﻿/*------------------------------
 =BASIC SETUP
 ------------------------------*/
+footerstyle {
+    font-size:15px;
+    color:white;
+    }
+
+.weather {
+    font-size: 20px;
+    color: black;
+    width: 50%;
+    height: 50%;
+    background: -webkit-linear-gradient(left, #BFBFBF, #959595); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #BFBFBF, #959595); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #BFBFBF, #959595); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #BFBFBF,#959595 ); /* Standard syntax */
+    border-radius: 10px;
+}
 #transDemo2 div {
     width: 70px;
     -webkit-transition: all 2s ease-in-out;
@@ -480,7 +496,7 @@ footer {
 	position: absolute;
 	left: 0;
 	width: 100%;
-	background: #222;
+	background-color: black;
 }
 
 	footer div {
@@ -493,7 +509,7 @@ footer {
 
 		footer div section {
 			display: table-cell;
-			width: 250px;
+			width: 500px;
 		}
 
 		footer div #about, footer div #blogroll {

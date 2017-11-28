@@ -58,13 +58,18 @@
         </div>
 
     </div>
+    <center>
+        <div class="weather">
 
-  
-        <h2><b>Weather forcast: </b>@DateTime.Now</h2>
+            <h3><b>Weather forcast: </b>@DateTime.Now</h3>
 
-        <div id=@Html.Raw(Json.Encode(item.City))></div>
+            <div id=@Html.Raw(Json.Encode(item.City))>
+            </div>
+            <br />
 
-        <script>
+        </div>
+    </center>
+                <script>
 
             var jsonstr = @Html.Raw(Json.Encode(item.City));
 
@@ -83,7 +88,7 @@
 
             $.getJSON(url, function (data) {
 
-                
+
                 var main = data.weather[0].main;
 
                 var description = data.weather[0].description;
@@ -96,12 +101,10 @@
 
                 var wind = [data.wind.speed, data.wind.deg];
 
-                //var wind = [1, 2];
-
                 var weatherJSON = JSON.stringify(data);
 
                 document.getElementById(city).innerHTML = 'Main: ' + main + ', ' + description + '<br>Temp: ' + temp + ' &#176;C' + '<br>Humidity: ' + humidity + '%<br>Wind: ' + wind[0] + ' Mps, ' + wind[1] + ' Degrees ';
-                
+
 
 
             });
@@ -110,7 +113,7 @@
     }
 
 
-        </script>
-        <hr>
+                </script>
+                <hr>
 
-}
+                }

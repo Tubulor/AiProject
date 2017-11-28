@@ -36,7 +36,6 @@ namespace FinalProject.Models
 
         public DbSet<Products> Products { get; set; }
         public DbSet<Buys> Buys { get; set; }
-
         public DbSet<Branches> Branches { get; set; }
     }
 
@@ -91,6 +90,7 @@ namespace FinalProject.Models
         public virtual ICollection<Products> Product { get; set; }
 
         public virtual Products Products { get; set; }
+
 		[ForeignKey("MembersID")]
 		public virtual ApplicationUser ApplicationUsers { get; set; }
     }
